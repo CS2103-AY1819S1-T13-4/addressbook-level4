@@ -13,11 +13,12 @@ import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
 import seedu.address.model.person.Person;
+import seedu.address.model.transcript.TranscriptModel;
 
 /**
  * Represents the in-memory model of the address book data.
  */
-public class ModelManager extends ComponentManager implements Model {
+public class ModelManager extends ComponentManager implements Model, TranscriptModel {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final VersionedAddressBook versionedAddressBook;
@@ -147,4 +148,8 @@ public class ModelManager extends ComponentManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    @Override
+    public double calculateCap() {
+        return 0;
+    }
 }
