@@ -47,8 +47,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        PredictiveTranscript addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        PredictiveTranscript differentAddressBook = new PredictiveTranscript();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
