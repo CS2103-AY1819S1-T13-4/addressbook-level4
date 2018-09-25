@@ -8,8 +8,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.PredictiveTranscript;
+import seedu.address.model.ReadOnlyTranscript;
 import seedu.address.model.person.Person;
 
 /**
@@ -34,7 +34,7 @@ public class XmlSerializableAddressBook {
     /**
      * Conversion
      */
-    public XmlSerializableAddressBook(ReadOnlyAddressBook src) {
+    public XmlSerializableAddressBook(ReadOnlyTranscript src) {
         this();
         persons.addAll(src.getPersonList().stream().map(XmlAdaptedPerson::new).collect(Collectors.toList()));
     }
@@ -45,8 +45,8 @@ public class XmlSerializableAddressBook {
      * @throws IllegalValueException if there were any data constraints violated or duplicates in the
      * {@code XmlAdaptedPerson}.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public PredictiveTranscript toModelType() throws IllegalValueException {
+        PredictiveTranscript addressBook = new PredictiveTranscript();
         for (XmlAdaptedPerson p : persons) {
             Person person = p.toModelType();
             if (addressBook.hasPerson(person)) {

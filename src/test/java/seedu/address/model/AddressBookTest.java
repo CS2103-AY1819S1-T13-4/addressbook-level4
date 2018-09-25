@@ -28,7 +28,7 @@ public class AddressBookTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final AddressBook addressBook = new AddressBook();
+    private final PredictiveTranscript addressBook = new PredictiveTranscript();
 
     @Test
     public void constructor() {
@@ -43,7 +43,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        PredictiveTranscript newData = getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -94,7 +94,7 @@ public class AddressBookTest {
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class AddressBookStub implements ReadOnlyTranscript {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {

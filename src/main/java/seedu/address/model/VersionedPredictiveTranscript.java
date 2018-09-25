@@ -6,16 +6,16 @@ import java.util.List;
 /**
  * {@code AddressBook} that keeps track of its own history.
  */
-public class VersionedAddressBook extends AddressBook {
+public class VersionedPredictiveTranscript extends PredictiveTranscript {
 
-    private final List<ReadOnlyAddressBook> addressBookStateList;
+    private final List<ReadOnlyTranscript> addressBookStateList;
     private int currentStatePointer;
 
-    public VersionedAddressBook(ReadOnlyAddressBook initialState) {
+    public VersionedPredictiveTranscript(ReadOnlyTranscript initialState) {
         super(initialState);
 
         addressBookStateList = new ArrayList<>();
-        addressBookStateList.add(new AddressBook(initialState));
+        addressBookStateList.add(new PredictiveTranscript(initialState));
         currentStatePointer = 0;
     }
 
@@ -25,7 +25,7 @@ public class VersionedAddressBook extends AddressBook {
      */
     public void commit() {
         removeStatesAfterCurrentPointer();
-        addressBookStateList.add(new AddressBook(this));
+        addressBookStateList.add(new PredictiveTranscript(this));
         currentStatePointer++;
     }
 
@@ -77,11 +77,11 @@ public class VersionedAddressBook extends AddressBook {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof VersionedAddressBook)) {
+        if (!(other instanceof VersionedPredictiveTranscript)) {
             return false;
         }
 
-        VersionedAddressBook otherVersionedAddressBook = (VersionedAddressBook) other;
+        VersionedPredictiveTranscript otherVersionedAddressBook = (VersionedPredictiveTranscript) other;
 
         // state check
         return super.equals(otherVersionedAddressBook)
