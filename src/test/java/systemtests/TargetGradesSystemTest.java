@@ -15,8 +15,6 @@ public class TargetGradesSystemTest extends AddressBookSystemTest {
         String expectedMsg = TargetGradesCommand.MESSAGE_UNACHIEVABLE_GOAL;
         assertTargetGradesFailure(expectedMsg);
     }
-    
-    
 
     private void assertTargetGradesSuccess(String expectedMsg) {
         assertApplicationDisplaysExpected("",

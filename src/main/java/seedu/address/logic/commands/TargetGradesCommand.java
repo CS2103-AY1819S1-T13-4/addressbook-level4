@@ -5,9 +5,9 @@ import static java.util.Objects.requireNonNull;
 import javafx.collections.ObservableList;
 
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
-import seedu.address.logic.commands.exceptions.CommandException;
 
 //@@author: jeremiah-ang
 /**
