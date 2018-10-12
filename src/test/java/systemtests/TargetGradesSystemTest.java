@@ -12,8 +12,8 @@ public class TargetGradesSystemTest extends AddressBookSystemTest {
     @Test
     public void targetGrades() {
         executeCommand(TargetGradesCommand.COMMAND_WORD);
-        String expectedMsg = "None Yet";
-        assertTargetGradesSuccess(expectedMsg);
+        String expectedMsg = TargetGradesCommand.MESSAGE_UNACHIEVABLE_GOAL;
+        assertTargetGradesFailure(expectedMsg);
     }
     
     
@@ -24,9 +24,9 @@ public class TargetGradesSystemTest extends AddressBookSystemTest {
                 getModel());
     }
 
-    private void assertTargetGradesFailure(String expectedMsg) {
+    private void assertTargetGradesFailure(String failureMessage) {
         assertApplicationDisplaysExpected(TargetGradesCommand.COMMAND_WORD,
-                String.format(TargetGradesCommand.MESSAGE_SUCCESS, expectedMsg),
+                failureMessage,
                 getModel());
     }
 }
