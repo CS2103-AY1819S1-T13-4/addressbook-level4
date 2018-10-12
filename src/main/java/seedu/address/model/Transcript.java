@@ -162,6 +162,10 @@ public class Transcript implements ReadOnlyTranscript {
         return module.getGrade().affectsCap();
     }
 
+    public ObservableList<Module> getTargetGrades() {
+        return null;
+    }
+
     //// util methods
 
     @Override

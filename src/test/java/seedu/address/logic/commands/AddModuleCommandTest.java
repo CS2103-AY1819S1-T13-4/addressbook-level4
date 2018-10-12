@@ -148,6 +148,11 @@ public class AddModuleCommandTest {
         }
 
         @Override
+        public ObservableList<Module> getTargetGrades() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public double getCap() {
             throw new AssertionError("This method should not be called");
         }

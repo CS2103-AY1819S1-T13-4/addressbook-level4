@@ -117,7 +117,10 @@ public interface Model {
      */
     void updateCapGoal(double capGoal);
 
-
+    /**
+     * Get the target module grades for ungraded modules
+     */
+    ObservableList<Module> getTargetGrades();
 
     /**
      * Returns the CAP based on the current Transcript records

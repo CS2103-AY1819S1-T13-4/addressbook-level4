@@ -174,6 +174,11 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTranscriptChanged();
     }
 
+    @Override
+    public ObservableList<Module> getTargetGrades() {
+        return versionedTranscript.getTargetGrades();
+    }
+
     //TODO: REMOVE
     @Override
     public ReadOnlyAddressBook getAddressBook() {
