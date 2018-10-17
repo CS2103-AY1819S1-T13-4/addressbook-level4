@@ -14,7 +14,7 @@ import seedu.address.model.module.Module;
  * Show CAP based on existing modules.
  */
 public class TargetGradesCommand extends Command {
-    public static final String COMMAND_WORD = "targetGrades";
+    public static final String COMMAND_WORD = "c_targetGrades";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Calculate grades you need to achieve "
             + "for your remaining ungraded modules "
             + "Parameters: NONE "
