@@ -221,7 +221,7 @@ public class Transcript implements ReadOnlyTranscript {
 
         Module targetModule;
         for (Module ungradedModule : ungradedModules) {
-            if (unitScoreToAchieve == 0.5) {
+            if (unitScoreToAchieve <= 0.5) {
                 unitScoreToAchieve = 1.0;
             }
             targetModule = new Module(ungradedModule, new Grade(unitScoreToAchieve));
