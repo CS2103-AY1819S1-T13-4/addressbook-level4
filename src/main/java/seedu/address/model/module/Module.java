@@ -62,10 +62,25 @@ public class Module {
         this.year = year;
         this.semester = semester;
         this.credits = credit;
-        this.grade = grade;
         this.completed = completed;
+        this.grade = (grade == null) ? new Grade() : grade;
     }
 
+    public Module(Code code, Year year, Semester semester, Credit credit, Grade grade) {
+        this(code, year, semester, credit, grade, (grade == null) || grade.isComplete());
+    }
+
+    //@@author jeremiah-ang
+    /**
+     * Creates a new Module from an existing module but with a different grade
+     * @param module
+     * @param grade
+     */
+    public Module(Module module, Grade grade) {
+        this(module.code, module.year, module.semester, module.credits, grade, module.completed);
+    }
+
+    //@@author alexkmj
     /**
      * Returns the module code.
      *
@@ -152,25 +167,8 @@ public class Module {
         }
 
         Module otherModule = (Module) other;
-
-        if (grade == null && otherModule.grade != null) {
-            return false;
-        }
-
-        if (grade != null && otherModule.grade == null) {
-            return false;
-        }
-
-        if (grade == null) {
-            return otherModule.getCode().equals(getCode())
-                    && otherModule.getYear().equals(getYear())
-                    && otherModule.getSemester().equals(getSemester())
-                    && otherModule.getCredits().equals(getCredits())
-                    && otherModule.hasCompleted() == hasCompleted();
-        }
-
-
         return otherModule.getCode().equals(getCode())
+                && otherModule.getGrade().equals(getGrade())
                 && otherModule.getYear().equals(getYear())
                 && otherModule.getSemester().equals(getSemester())
                 && otherModule.getCredits().equals(getCredits())
