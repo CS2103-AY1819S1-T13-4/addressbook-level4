@@ -195,6 +195,9 @@ public class Transcript implements ReadOnlyTranscript {
         return module.getGrade().affectsCap();
     }
 
+    public ObservableList<Module> getTargetGrades() {
+        return null;
+    }
     /**
      * Calculates target module grade in order to achieve target goal
      * @return a list of modules with target grade if possible. null otherwise
@@ -221,7 +224,7 @@ public class Transcript implements ReadOnlyTranscript {
 
         Module targetModule;
         for (Module ungradedModule : ungradedModules) {
-            if (unitScoreToAchieve == 0.5) {
+            if (unitScoreToAchieve <= 0.5) {
                 unitScoreToAchieve = 1.0;
             }
             targetModule = new Module(ungradedModule, new Grade(unitScoreToAchieve));
