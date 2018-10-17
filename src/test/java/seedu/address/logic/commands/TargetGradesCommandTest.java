@@ -18,7 +18,7 @@ public class TargetGradesCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void commandValid() {
+    public void commandFailure() {
         TargetGradesCommand command = new TargetGradesCommand();
         assertCommandFailure(command, model, commandHistory, TargetGradesCommand.MESSAGE_UNACHIEVABLE_GOAL);
     }
