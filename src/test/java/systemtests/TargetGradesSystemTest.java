@@ -16,12 +16,6 @@ public class TargetGradesSystemTest extends AddressBookSystemTest {
         assertTargetGradesFailure(expectedMsg);
     }
 
-    private void assertTargetGradesSuccess(String expectedMsg) {
-        assertApplicationDisplaysExpected("",
-                String.format(TargetGradesCommand.MESSAGE_SUCCESS, expectedMsg),
-                getModel());
-    }
-
     private void assertTargetGradesFailure(String failureMessage) {
         assertApplicationDisplaysExpected(TargetGradesCommand.COMMAND_WORD,
                 failureMessage,
