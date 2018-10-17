@@ -177,6 +177,11 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTranscriptChanged();
     }
 
+    @Override
+    public ObservableList<Module> getTargetGrades() {
+        return versionedTranscript.getTargetGrades();
+    }
+
     //@@author
     //TODO: REMOVE
     @Override
