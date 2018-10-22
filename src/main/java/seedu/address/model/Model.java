@@ -4,7 +4,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 
-import seedu.address.model.capgoal.CapGoal;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
@@ -122,21 +121,25 @@ public interface Model {
      */
     void commitTranscript();
 
+    //@@author jeremiah-ang
     /**
      * Get the cap goal of the current transcript
      */
     String getCapGoalMessage();
 
+    //@@author jeremiah-ang
     /**
      * Set the cap goal of the current transcript
      */
     void updateCapGoal(double capGoal);
 
+    //@@author jeremiah-ang
     /**
      * Returns the CAP based on the current Transcript records
      */
     double getCap();
 
+    //@@author
     /** Returns the AddressBook TODO: REMOVE*/
     ReadOnlyAddressBook getAddressBook();
 
