@@ -11,10 +11,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import javafx.collections.ObservableList;
 
+import org.junit.rules.ExpectedException;
+import seedu.address.model.capgoal.CapGoal;
 import seedu.address.model.module.Module;
 import seedu.address.model.util.ModuleBuilder;
 
@@ -66,6 +69,30 @@ public class TranscriptTest {
             .noGrade()
             .build();
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void setCapGoal() {
+        assertCapGoalSetSuccess(4.0);
+        assertCapGoalSetSuccess(3.5);
+        assertCapGoalSetSuccess(1.0);
+        assertCapGoalSetFailure(-1.0);
+        assertCapGoalSetFailure(5.1);
+    }
+
+    private void assertCapGoalSetFailure(double capGoal) {
+        thrown.expectMessage(CapGoal.MESSAGE_CAP_GOAL_CONSTRAINTS);
+        Transcript transcript = new Transcript();
+        transcript.setCapGoal(capGoal);
+    }
+
+    private void assertCapGoalSetSuccess(double capGoal) {
+        Transcript transcript = new Transcript();
+        transcript.setCapGoal(capGoal);
+        assertEquals(transcript.getCapGoalMessage(), capGoal + "");
+    }
+
     @Test
     public void typicalModulesCapScore() {
         List<Module> modules = getModulesWithoutNonGradeAffectingModules();
@@ -76,7 +103,6 @@ public class TranscriptTest {
     public void calculateCapScoreWithSuModule() {
         List<Module> modules = getModulesWithNonGradeAffectingModules();
         assertCapScoreEquals(modules, MODULES_WITHOUT_NON_AFFECTING_MODULES_CAP);
-
     }
 
     @Test

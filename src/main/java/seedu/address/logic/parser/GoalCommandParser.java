@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.GoalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.capgoal.CapGoal;
 
 //@@author jeremiah-ang
 /**
@@ -20,10 +21,11 @@ public class GoalCommandParser implements Parser<GoalCommand> {
 
         try {
             double newGoal = Double.parseDouble(trimmedArgs);
-            if (newGoal < 0 || newGoal > 5) {
-                throw new ParseException(format);
+            if (CapGoal.isValidCode(newGoal)) {
+                return new GoalCommand(newGoal);
+            } else {
+                throw new ParseException(CapGoal.MESSAGE_CAP_GOAL_CONSTRAINTS);
             }
-            return new GoalCommand(newGoal);
         } catch (NumberFormatException nfe) {
             throw new ParseException(format);
         }

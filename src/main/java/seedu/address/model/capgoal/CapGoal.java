@@ -1,6 +1,10 @@
 package seedu.address.model.capgoal;
 
 //@@author jeremiah-ang
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents Cap Goal
  *
@@ -8,6 +12,7 @@ package seedu.address.model.capgoal;
  */
 public class CapGoal {
 
+    public static final String MESSAGE_CAP_GOAL_CONSTRAINTS = "CAP goal should between 0.0 and 5.0 inclusive.";
     private static final String MESSAGE_IS_NULL = "NIL";
 
     public final double capGoal;
@@ -25,9 +30,15 @@ public class CapGoal {
     }
 
     public CapGoal(double capGoal, boolean isImpossible) {
+        requireNonNull(capGoal);
+        checkArgument(isValidCode(capGoal), MESSAGE_CAP_GOAL_CONSTRAINTS);
         isSet = true;
         this.capGoal = capGoal;
         this.isImpossible = isImpossible;
+    }
+
+    public static Boolean isValidCode(double capGoal) {
+        return capGoal >= 0 && capGoal <= 5.0;
     }
 
     /**
