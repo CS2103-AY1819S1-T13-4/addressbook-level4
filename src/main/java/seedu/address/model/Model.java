@@ -125,7 +125,7 @@ public interface Model {
     /**
      * Get the cap goal of the current transcript
      */
-    CapGoal getCapGoal();
+    String getCapGoalMessage();
 
     /**
      * Set the cap goal of the current transcript

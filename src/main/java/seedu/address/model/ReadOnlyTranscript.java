@@ -18,4 +18,10 @@ public interface ReadOnlyTranscript {
      * This list will not contain any duplicate modules.
      */
     ObservableList<Module> getModuleList();
+
+    /**
+     * Returns the current cap goal value
+     * Will return -1 if it was not defined
+     */
+    String getCapGoalMessage();
 }
