@@ -274,8 +274,9 @@ public class Transcript implements ReadOnlyTranscript {
         return FXCollections.observableArrayList(targetModules);
     }
 
-    public CapGoal getCapGoal() {
-        return capGoal;
+    @Override
+    public String getCapGoalMessage() {
+        return capGoal.toString();
     }
 
     public void setCapGoal(double capGoal) {

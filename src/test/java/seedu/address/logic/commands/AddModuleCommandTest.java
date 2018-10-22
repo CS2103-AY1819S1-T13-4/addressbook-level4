@@ -19,7 +19,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTranscript;
 import seedu.address.model.Transcript;
-import seedu.address.model.capgoal.CapGoal;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.util.ModuleBuilder;
@@ -139,7 +138,7 @@ public class AddModuleCommandTest {
         }
 
         @Override
-        public CapGoal getCapGoal() {
+        public String getCapGoalMessage() {
             throw new AssertionError("This method should not be called");
         }
 
