@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.GoalCommand;
 import seedu.address.model.Model;
+import seedu.address.model.capgoal.CapGoal;
 
 //@@author jeremiah-ang
 /**
@@ -38,7 +39,7 @@ public class GoalCommandSystemTest extends AddressBookSystemTest {
      * @param goal
      */
     private void assertGoalFailure(double goal) {
-        String expectedResultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, GoalCommand.MESSAGE_USAGE);
+        String expectedResultMessage = CapGoal.MESSAGE_CAP_GOAL_CONSTRAINTS;
         assertCommandFailure(getCommandString(goal), getModel(), expectedResultMessage);
     }
 
