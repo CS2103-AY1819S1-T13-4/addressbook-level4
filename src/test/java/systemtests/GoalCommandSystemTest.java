@@ -27,7 +27,7 @@ public class GoalCommandSystemTest extends AddressBookSystemTest {
 
     @Test
     public void setGoalFailure() {
-        /* Case: Set goal with valid value
+        /* Case: Set goal with invalid value
          * -> goal command handled correctly
          */
         double newGoal = -1;
