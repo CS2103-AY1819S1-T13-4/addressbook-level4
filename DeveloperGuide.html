@@ -67,9 +67,11 @@
 <li><a href="#user-stories">Appendix C: User Stories</a></li>
 <li><a href="#use-cases">Appendix D: Use Cases</a>
 <ul class="sectlevel2">
-<li><a href="#use-case-calculate-predicted-cap">D.1. Use case: Calculate predicted CAP</a></li>
-<li><a href="#use-case-view-grades-needed-to-achieve-cap-goal-based-on-previous-grades">D.2. Use case:  View grades needed to achieve CAP goal (based on previous grades)</a></li>
-<li><a href="#use-case-save-entered-module">D.3. Use case:  Save entered module</a></li>
+<li><a href="#use-case-uc1-calculating-current-cap">D.1. Use case: [UC1] Calculating current CAP</a></li>
+<li><a href="#use-case-uc2-view-grades-needed-to-achieve-cap-goal-based-on-previous-grades">D.2. Use case: [UC2] View grades needed to achieve CAP goal (based on previous grades)</a></li>
+<li><a href="#use-case-uc3-updating-target-grades">D.3. Use case: [UC3] Updating target grades</a></li>
+<li><a href="#use-case-uc4-save-entered-module">D.4. Use case: [UC4] Save entered module</a></li>
+<li><a href="#use-case-uc5-loading-saved-modules">D.5. Use case: [UC5] Loading saved modules</a></li>
 </ul>
 </li>
 <li><a href="#non-functional-requirements">Appendix E: Non Functional Requirements</a></li>
@@ -1369,74 +1371,186 @@ can enter my entries incrementally.</p>
 <h2 id="use-cases"><a class="link" href="#use-cases">Appendix D: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="use-case-calculate-predicted-cap"><a class="link" href="#use-case-calculate-predicted-cap">D.1. Use case: Calculate predicted CAP</a></h3>
+<h3 id="use-case-uc1-calculating-current-cap"><a class="link" href="#use-case-uc1-calculating-current-cap">D.1. Use case: [UC1] Calculating current CAP</a></h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User enters all modules - modules with grades (previous or target), modules without grades (unknown).</p>
+<p>User enter modules</p>
 </li>
 <li>
-<p>System immediately displays confirmation and current CAP.</p>
+<p>System recalculates CAP</p>
+</li>
+<li>
+<p>System displays CAP</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1a. User enters invalid parameters</p>
+<div class="ulist">
+<ul>
+<li>
+<p>1a1. System shows an <code>Invalid entry</code> error message</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1b. User enters duplicate Module</p>
+<div class="ulist">
+<ul>
+<li>
+<p>1b1. System shows an <code>Duplicate Module</code> error message</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="use-case-view-grades-needed-to-achieve-cap-goal-based-on-previous-grades"><a class="link" href="#use-case-view-grades-needed-to-achieve-cap-goal-based-on-previous-grades">D.2. Use case:  View grades needed to achieve CAP goal (based on previous grades)</a></h3>
+<h3 id="use-case-uc2-view-grades-needed-to-achieve-cap-goal-based-on-previous-grades"><a class="link" href="#use-case-uc2-view-grades-needed-to-achieve-cap-goal-based-on-previous-grades">D.2. Use case: [UC2] View grades needed to achieve CAP goal (based on previous grades)</a></h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Use-Case-B.1.</p>
+<p>User enter CAP goal</p>
 </li>
 <li>
-<p>User enters CAP goal.</p>
-</li>
-<li>
-<p>User requests for target grade.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><strong>V1.0:</strong></p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>System displays target grades for each module (numeric).</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p><strong>V2.0:</strong></p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>System displays target grades for each module (numeric and letter).</p>
-</li>
-<li>
-<p>User edits target grades.</p>
-</li>
-<li>
-<p>System displays new target grades for each module.</p>
-</li>
-</ol>
+<p>System displays target grades for ungraded modules</p>
+<div class="paragraph">
+<p>Use case ends.</p>
 </div>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1a. CAP goal is invalid</p>
+<div class="ulist">
+<ul>
+<li>
+<p>1a1. System shows an <code>Invalid CAP Goal</code> error message</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
 </li>
-</ol>
+</ul>
+</div>
+</li>
+<li>
+<p>2a. CAP goal is not achievable</p>
+<div class="ulist">
+<ul>
+<li>
+<p>2a1. System shows an <code>Not achievable</code> error message</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="use-case-save-entered-module"><a class="link" href="#use-case-save-entered-module">D.3. Use case:  Save entered module</a></h3>
+<h3 id="use-case-uc3-updating-target-grades"><a class="link" href="#use-case-uc3-updating-target-grades">D.3. Use case: [UC3] Updating target grades</a></h3>
+<div class="paragraph">
+<p><strong>Pre-condition:</strong> <code>[UC2]</code> completed</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User enters some modules</p>
+<p>User modify modules entries</p>
+</li>
+<li>
+<p>System recalculates target grades for ungraded modules</p>
+</li>
+<li>
+<p>System displays new target grades for ungraded modules</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>2a. CAP goal is not achievable with new set of modules</p>
+<div class="ulist">
+<ul>
+<li>
+<p>2a1. System shows an <code>Not achievable</code> error message</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-case-uc4-save-entered-module"><a class="link" href="#use-case-uc4-save-entered-module">D.4. Use case: [UC4] Save entered module</a></h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User enters module</p>
 </li>
 <li>
 <p>System saves the modules</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
 </li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-case-uc5-loading-saved-modules"><a class="link" href="#use-case-uc5-loading-saved-modules">D.5. Use case: [UC5] Loading saved modules</a></h3>
+<div class="paragraph">
+<p><strong>Pre-conditions:</strong> <code>[UC4]</code> completed</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>User restarts the application</p>
 </li>
@@ -1445,6 +1559,9 @@ can enter my entries incrementally.</p>
 </li>
 <li>
 <p>System displays saved modules</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
 </li>
 </ol>
 </div>
@@ -1635,4 +1752,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-25 09:36:00 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-25 11:42:21 UTC</div></div></div></body></html>
