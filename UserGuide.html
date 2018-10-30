@@ -14,13 +14,13 @@
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
 <li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-module-code-add-code">3.2. Adding a module: <code>add</code></a></li>
-<li><a href="#editing-a-module-code-edit-code">3.3. Editing a module : <code>edit</code></a></li>
-<li><a href="#deleting-a-module-code-delete-code">3.4. Deleting a module : <code>delete</code></a></li>
-<li><a href="#setting-cap-goal-code-goal-code">3.5. Setting Cap Goal : <code>goal</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.6. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#undoing-commands-code-undo-code">3.7. Undoing commands : <code>undo</code></a></li>
-<li><a href="#redoing-commands-code-redo-code">3.8. Redoing commands : <code>redo</code></a></li>
+<li><a href="#adding-a-module-code-c_add-code">3.2. Adding a module: <code>c_add</code></a></li>
+<li><a href="#editing-a-module-code-c_edit-code">3.3. Editing a module : <code>c_edit</code></a></li>
+<li><a href="#deleting-a-module-code-c_delete-code">3.4. Deleting a module : <code>c_delete</code></a></li>
+<li><a href="#setting-cap-goal-code-c_goal-code">3.5. Setting Cap Goal : <code>c_goal</code></a></li>
+<li><a href="#calculate-cap-code-c_cap-code">3.6. Calculate Cap : <code>c_cap</code></a></li>
+<li><a href="#undoing-commands-code-c_undo-code">3.7. Undoing commands : <code>c_undo</code></a></li>
+<li><a href="#redoing-commands-code-c_redo-code">3.8. Redoing commands : <code>c_redo</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">3.9. Exiting the program : <code>exit</code></a></li>
 <li><a href="#adjusting-target-goals-code-adjust-code">3.10. Adjusting target goals: <code>adjust</code></a></li>
 <li><a href="#saving-the-data">3.11. Saving the data</a></li>
@@ -35,7 +35,12 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>CAPTracker is for those students who prefer to use a desktop app for calculating and managing their CAP. More importantly CAPTracker is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CAPTracker is the ideal application to calculate your current CAP, and predict what grades you need in modules you haven’t taken to achieve your ideal CAP. Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>CAPTracker is for students who wants to use a desktop app for calculating and managing their CAP
+(Cumulative Average Point). More importantly CAPTracker is <strong>optimized for those who prefer to work
+with a CLI (Command Line Interface)</strong> while still having the benefits of a Graphical User Interface
+(GUI). If you can type fast, CAPTracker is the ideal application for calculating your current CAP,
+and predicting grades needed to achieve your ideal CAP in modules that hasn&#8217;t been taken.
+Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 </div>
 </div>
@@ -51,7 +56,7 @@
 <p>Download the latest <code>captracker.jar</code> <a href="https://github.com/CS2103-AY1819S1-T13-4/main/tree/master/releases">here</a>.</p>
 </li>
 <li>
-<p>Copy the file to the folder you want to use as the home folder for your CAP Tracker.</p>
+<p>Copy the file to the folder you would want to use as the home folder for your CAP Tracker.</p>
 </li>
 <li>
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
@@ -63,23 +68,21 @@
 </li>
 <li>
 <p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
-e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
+e.g. Typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
 </li>
 <li>
-<p>Some example commands you can try:</p>
+<p>Some commands you can try:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>list</code></strong> : lists all modules</p>
+<p><strong><code>c_add</code></strong><code>CS2103 2 1 4 A+</code> : Adds a module <code>CS2103</code> worth <code>4</code> MCs taken in Semester <code>1</code> as a
+Year <code>2</code> student.</p>
 </li>
 <li>
-<p><strong><code>add</code></strong><code>CS2103 1 2 A+</code> : adds a module <code>CS2103</code> to the CAP Tracker.</p>
+<p><strong><code>c_delete</code></strong><code>CS2103</code> : Deletes <code>CS2103</code> from CAPTracker.</p>
 </li>
 <li>
-<p><strong><code>delete</code></strong><code>CS2103</code> : deletes a the module <code>CS2103</code> from CAP Tracker</p>
-</li>
-<li>
-<p><strong><code>exit</code></strong> : exits the app</p>
+<p><strong><code>exit</code></strong> : Exits the app</p>
 </li>
 </ul>
 </div>
@@ -102,10 +105,15 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add MODULE_CODE YEAR SEMESTER [GRADE]</code> is a parameter which can be used as add CS2103 1 2 A+.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be replaced and supplied by the user.<br>
+e.g. <code>c_add MODULE_CODE YEAR SEMESTER CREDIT [GRADE]</code>:<br>
+<code>c_add CS2103 2 1 4 A+</code>.</p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g <code>add MODULE_CODE YEAR SEMESTER [GRADE]</code> can be used as <code>add CS2103 1 2 A+</code> or as <code>add CS2103 1 2</code></p>
+<p>Items in square brackets are optional.<br>
+e.g. <code>c_add MODULE_CODE YEAR SEMESTER CREDIT [GRADE]</code>:<br>
+<code>c_add CS2103 2 1 4 A+</code> or<br>
+<code>c_add CS2103 2 1 4</code></p>
 </li>
 </ul>
 </div>
@@ -118,10 +126,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-module-code-add-code"><a class="link" href="#adding-a-module-code-add-code">3.2. Adding a module: <code>add</code></a></h3>
+<h3 id="adding-a-module-code-c_add-code"><a class="link" href="#adding-a-module-code-c_add-code">3.2. Adding a module: <code>c_add</code></a></h3>
 <div class="paragraph">
-<p>Adds a module to the cap tracker<br>
-Format: <code>add MODULE_CODE YEAR SEMESTER CREDIT [GRADE]</code></p>
+<p>Adds a module to CapTracker<br>
+Case 1: Module hasn&#8217;t been taken yet<br>
+Format: <code>c_add MODULE_CODE YEAR SEMESTER CREDIT</code><br>
+Case 2: Module already taken<br>
+Format: <code>c_add MODULE_CODE YEAR SEMESTER CREDIT GRADE</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -130,7 +141,8 @@ Format: <code>add MODULE_CODE YEAR SEMESTER CREDIT [GRADE]</code></p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-A module with grade provided means it has already been completed while a module without grade means it hasn&#8217;t been taken by the user.
+A module with grade provided means it has already been completed while a module without grade means
+it hasn&#8217;t been taken by the user.
 </td>
 </tr>
 </table>
@@ -141,32 +153,51 @@ A module with grade provided means it has already been completed while a module 
 <div class="ulist">
 <ul>
 <li>
-<p><code>add CS2103 1 2 A+</code></p>
+<p><code>c_add CS2103 2 1 A+</code></p>
 </li>
 <li>
-<p><code>add CS2103 1 2</code></p>
+<p><code>c_add CS2103 2 1</code></p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="editing-a-module-code-edit-code"><a class="link" href="#editing-a-module-code-edit-code">3.3. Editing a module : <code>edit</code></a></h3>
-<div class="paragraph">
-<p>Edits an existing module in the cap tracker.<br>
-Format: <code>edit MODULE_CODE [MODULE_CODE] [YEAR GRADE] [GRADE]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the module with the specified <code>MODULE_CODE</code>. The module must exist.</p>
+<p>Adding of a module that would lead to two modules sharing the same <code>Code</code>, <code>Year</code>, and <code>Semester</code>
+is not allowed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-module-code-c_edit-code"><a class="link" href="#editing-a-module-code-c_edit-code">3.3. Editing a module : <code>c_edit</code></a></h3>
+<div class="paragraph">
+<p>Edits fields of a particular module entry in the CAPTracker.<br>
+Case 1: Only one module entry have the specified module code.<br>
+Format: <code>c_edit MODULE_CODE [-code MODULE_CODE] [-year YEAR] [-semester SEMESTER] [-credit CREDIT] [-grade GRADE]</code><br>
+Case 2: Multiple module entry have the specified module code. (Retook the module)<br>
+Format: <code>c_edit MODULE_CODE YEAR SEMESTER [-code MODULE_CODE] [-year YEAR] [-semester SEMESTER] [-credit CREDIT] [-grade GRADE]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Targeted module entry have to exist in the CAPTracker before editing it.</p>
 </li>
 <li>
-<p>At least one of the optional fields must be provided.</p>
+<p><code>Year</code> and <code>Semester</code> of the targeted entry must be specified if there exist multiple entries with
+the same module <code>Code</code>.</p>
 </li>
 <li>
-<p>Existing values will be updated to the input values.</p>
+<p>At least one of the module&#8217;s field has to be edited.</p>
+</li>
+<li>
+<p>The edit cannot lead to two modules sharing the same module <code>Code</code>, <code>Year</code>, and <code>Semester</code>.</p>
 </li>
 </ul>
 </div>
@@ -178,29 +209,34 @@ Format: <code>edit MODULE_CODE [MODULE_CODE] [YEAR GRADE] [GRADE]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit CS2103 CS1231 2 1</code><br>
-Edits the module code and year and semester of <code>CS2103</code> module to be <code>CS1231</code> and <code>2 1</code> respectively.</p>
+<p><code>c_edit CS2103 -grade A+</code><br>
+Change grade of CS2103 to A+.</p>
 </li>
 <li>
-<p><code>edit CS2103 2 1 CS</code><br>
-Edits the year and semester of <code>CS2103</code> module to be <code>2 1</code> and grade to <code>CS</code>.</p>
+<p><code>c_edit CS2103 -code CS2103T -credit 2</code><br>
+Change the module code and credit of CS2103 to CS2103T and 2 respecitively.</p>
+</li>
+<li>
+<p><code>c_edit CS2103 3 2 -semester 1</code><br>
+Change the semester of CS2103 taken in year 3 semester 2 to 1. In this case, CS2103 was retaken and
+cap tracker has multiple entries of it.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-module-code-delete-code"><a class="link" href="#deleting-a-module-code-delete-code">3.4. Deleting a module : <code>delete</code></a></h3>
+<h3 id="deleting-a-module-code-c_delete-code"><a class="link" href="#deleting-a-module-code-c_delete-code">3.4. Deleting a module : <code>c_delete</code></a></h3>
 <div class="paragraph">
-<p>Deletes the specified module from the cap tracker.<br>
+<p>Deletes a module from the cap tracker.<br>
 Format:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>If only one module with the module code exist: <code>delete MODULE_CODE</code></p>
+<p>Only one module entry with the module code exist: <code>c_delete MODULE_CODE</code></p>
 </li>
 <li>
-<p>Otherwise: <code>delete MODULE_CODE YEAR SEMESTER</code></p>
+<p>Multiple module entries with the same module code exist: <code>c_delete MODULE_CODE YEAR SEMESTER</code></p>
 </li>
 </ul>
 </div>
@@ -209,7 +245,11 @@ Format:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the module with the specified module code.</p>
+<p>Targeted module entry have to exist in the CAPTracker before deleting it.</p>
+</li>
+<li>
+<p><code>Year</code> and <code>Semester</code> of the targeted entry must be specified if there exist multiple entries with
+the same module <code>Code</code>.</p>
 </li>
 </ul>
 </div>
@@ -221,21 +261,21 @@ Format:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete CS2103</code><br>
-Deletes the module CS2103 in the cap tracker.</p>
+<p><code>c_delete CS2103</code><br>
+Delete CS2103 from the cap tracker.</p>
 </li>
 <li>
-<p><code>delete CS2103 1 2</code>
-Deletes the module CS2103 taken during the second semester of the first year.</p>
+<p><code>c_delete CS2103 1 2</code><br>
+Delete CS2103 taken during the second semester of the first year.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-cap-goal-code-goal-code"><a class="link" href="#setting-cap-goal-code-goal-code">3.5. Setting Cap Goal : <code>goal</code></a></h3>
+<h3 id="setting-cap-goal-code-c_goal-code"><a class="link" href="#setting-cap-goal-code-c_goal-code">3.5. Setting Cap Goal : <code>c_goal</code></a></h3>
 <div class="paragraph">
 <p>Set the CAP goal you want to achieve.<br>
-Format: <code>goal CAP_GOAL</code></p>
+Format: <code>c_goal CAP_GOAL</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -254,31 +294,31 @@ Format: <code>goal CAP_GOAL</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>goal 4.5</code><br>
-Update your CAP goal to be 4.5</p>
+<p><code>c_goal 4.5</code><br>
+Update your CAP goal to 4.5</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.6. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="calculate-cap-code-c_cap-code"><a class="link" href="#calculate-cap-code-c_cap-code">3.6. Calculate Cap : <code>c_cap</code></a></h3>
 <div class="paragraph">
-<p>Clears all entries from the cap tracker.<br>
-Format: <code>clear</code></p>
+<p>Calculate current CAP<br>
+Format: <code>c_cap</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-commands-code-undo-code"><a class="link" href="#undoing-commands-code-undo-code">3.7. Undoing commands : <code>undo</code></a></h3>
+<h3 id="undoing-commands-code-c_undo-code"><a class="link" href="#undoing-commands-code-c_undo-code">3.7. Undoing commands : <code>c_undo</code></a></h3>
 <div class="paragraph">
 <p>Reverts changes made by the last command given.<br>
-Format: <code>undo</code></p>
+Format: <code>c_undo</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-commands-code-redo-code"><a class="link" href="#redoing-commands-code-redo-code">3.8. Redoing commands : <code>redo</code></a></h3>
+<h3 id="redoing-commands-code-c_redo-code"><a class="link" href="#redoing-commands-code-c_redo-code">3.8. Redoing commands : <code>c_redo</code></a></h3>
 <div class="paragraph">
 <p>Reverts changes made by the undo command.<br>
-Format: <code>redo</code></p>
+Format: <code>c_redo</code></p>
 </div>
 </div>
 <div class="sect2">
@@ -323,7 +363,8 @@ Adjusts the grade with module code CS2103 taken in year 1 sem 1 to have grade A<
 <div class="sect2">
 <h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.11. Saving the data</a></h3>
 <div class="paragraph">
-<p>CAP tracker data are saved in the hard disk automatically after any command that changes the data.<br>
+<p>CAPTracker data are saved in the hard disk automatically whenever there is a command that leads to
+change in the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
@@ -334,7 +375,8 @@ There is no need to save manually.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: I entered the wrong grade into my module. How do I change it?<br>
-<strong>A</strong>: Use the <code>edit</code> command to input the correct information of the module - <code>edit MODULE_CODE [MODULE_CODE] [YEAR SEMESTER] [GRADE]</code></p>
+<strong>A</strong>: Use the <code>c_edit</code> command to input the correct information for the module<br>
+<code>c_edit MODULE_CODE -grade ACTUAL_GRADE</code></p>
 </div>
 </div>
 </div>
@@ -344,24 +386,46 @@ There is no need to save manually.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add</strong> <code>add MODULE_CODE YEAR SEMESTER [GRADE]</code><br>
-e.g. <code>add CS2103 1 2 A+</code></p>
+<p><strong>Add</strong><br>
+<code>c_add MODULE_CODE YEAR SEMESTER [GRADE]</code><br>
+e.g. <code>c_add CS2103 2 1 4 A+</code></p>
 </li>
 <li>
-<p><strong>Delete</strong> : <code>delete MODULE_CODE</code><br>
-e.g. <code>delete CS2103</code></p>
+<p><strong>Edit</strong> :<br>
+<code>c_edit [-code MODULE_CODE] [-year YEAR] [-semester SEMESTER] [-credit CREDIT] [-grade GRADE]</code><br>
+e.g. <code>c_edit CS2103 -grade A+</code>
+or<br>
+<code>c_edit YEAR SEMESTER [-code MODULE_CODE] [-year YEAR] [-semester SEMESTER] [-credit CREDIT] [-grade GRADE]</code>+
+e.g. <code>c_edit CS2103 2 1 -grade A+</code></p>
 </li>
 <li>
-<p><strong>Edit</strong> : <code>edit MODULE_CODE [MODULE_CODE] [YEAR GRADE] [GRADE]</code><br>
-e.g. <code>edit CS2103 2 1 CS</code></p>
+<p><strong>Delete</strong> :<br>
+<code>c_delete MODULE_CODE</code><br>
+e.g. <code>c_delete CS2103</code><br>
+or<br>
+<code>c_delete MODULE_CODE [YEAR SEMESTER]</code><br>
+e.g. <code>c_delete CS2103 1 2</code><br></p>
 </li>
 <li>
-<p><strong>List</strong> : <code>list</code></p>
+<p><strong>Goal</strong> : <code>c_goal CAP_GOAL</code><br>
+e.g. <code>c_goal 4.5</code></p>
+</li>
+<li>
+<p><strong>Cap</strong> : <code>c_cap</code></p>
+</li>
+<li>
+<p><strong>Undo</strong> : <code>c_undo</code></p>
+</li>
+<li>
+<p><strong>Redo</strong> : <code>c_redo</code></p>
 </li>
 <li>
 <p><strong>Help</strong> : <code>help</code></p>
 </li>
+<li>
+<p><strong>Exit</strong> : <code>exit</code></p>
+</li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 07:40:06 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 15:53:29 UTC</div></div></div></body></html>
