@@ -122,16 +122,698 @@ in the transcript and updated on the UI.</p>
 <div class="sect1">
 <h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="setting-cap-goal-code-c_goal-code"><a class="link" href="#setting-cap-goal-code-c_goal-code">Setting Cap Goal : <code>c_goal</code></a></h3>
 <div class="paragraph">
-<p>TBC</p>
+<p>Set the CAP goal you want to achieve.<br>
+Format: <code>c_goal CAP_GOAL</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Sets and updates the CAP goal.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>c_goal 4.5</code><br>
+Update your CAP goal to 4.5
+=== Adjusting target goals: <code>c_adjust</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Adjust the grade of an incomplete module<br>
+Format:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Module code is unique: <code>c_adjust MODULE_CODE GRADE</code></p>
+</li>
+<li>
+<p>Otherwise: <code>c_adjust MODULE_CODE YEAR SEM GRADE</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>c_adjust CS2103 A</code><br>
+Adjusts the grade with module code CS2103 to have grade A</p>
+</li>
+<li>
+<p><code>c_adjust CS2103 1 1 A</code><br>
+Adjusts the grade with module code CS2103 taken in year 1 sem 1 to have grade A</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="model-component"><a class="link" href="#model-component">Model component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelClassDiagram_Transcript.png" alt="ModelClassDiagram Transcript" width="800">
+</div>
+<div class="title">Figure 1. Structure of the Model Component</div>
+</div>
 <div class="paragraph">
-<p>TBC</p>
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Model</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+</li>
+<li>
+<p>stores the Transcript data.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;Module&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+<li>
+<p>does not depend on any of the other three components.</p>
+</li>
+<li>
+<p>provides filter function to filter <code>Module</code> with different kind of <code>Grade</code></p>
+</li>
+</ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 02:01:14 UTC</div></div></div></body></html>
+<div class="sect2">
+<h3 id="cap-target-grades-calculation"><a class="link" href="#cap-target-grades-calculation">CAP &amp; Target Grades Calculation</a></h3>
+<div class="paragraph">
+<p>The two calculations are triggered upon an change to the list of modules in <code>Transcript</code> <em>i.e. add/update/delete</em>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDTranscriptModulesUpdate.png" alt="SDTranscriptModulesUpdate" width="800">
+</div>
+<div class="title">Figure 2. Sequence Diagram of updating modules in Transcript</div>
+</div>
+<div class="sect3">
+<h4 id="Implementation-CAP"><a class="link" href="#Implementation-CAP">CAP Calculation</a></h4>
+<div class="paragraph">
+<p>The CAP calculation is handled by <code>Transcript</code>.</p>
+</div>
+<div class="paragraph">
+<p>The pseudo-code for CAP is the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>all_points &lt;- sum(credits(m) * points(m) for all completed modules m)
+all_credits &lt;- sum(credits(m) for all completed modules m)
+
+CAP &lt;- all_points/all_credits</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDTranscriptCalculateCap.png" alt="SDTranscriptCalculateCap" width="800">
+</div>
+<div class="title">Figure 3. Sequence Diagram of CAP calculation</div>
+</div>
+<div class="paragraph">
+<p>CAP Calculation is triggered by:</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Implementation-TargetGrades"><a class="link" href="#Implementation-TargetGrades">Target Grades Calculation</a></h4>
+<div class="paragraph">
+<p>The target <code>Grade</code> calculation is facilitated by <code>Transcript</code>.
+The returned list of modules with target <code>Grade</code> assures the following properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Reducing the <code>Grade</code> of any proposed target will result in the increase of another.</p>
+</li>
+<li>
+<p>If <code>x</code> is the minimum <code>Grade</code> required when assigned to <strong>all</strong> modules to obtain the desired CAP Goal,
+none of the proposed target <code>Grade</code> will be greater than <code>x</code></p>
+<div class="paragraph">
+<p>i.e. if assigning <code>B+</code> to <strong>all</strong> module is the minimal requirement to obtain the desired CAP Goal,
+none of the proposed target <code>Grade</code> will be <code>A-</code> or above.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Below is the pseudo-code for Target Grade Calculation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>CG &lt;- CAP goal of user.
+TC &lt;- total credit of completed and incomplete modules.
+PO &lt;- total points achieved from completed modules.
+P &lt;- CG * TC - PO // total points needed to achieve from incomplete modules.
+
+mc_remaining &lt;- sum of module credit of all incomplete modules
+accumulated_points &lt;- 0
+for every incomplete Module m:
+    avg_point_per_mc &lt;- (P - accumulated_points) / mc_remaining
+    target(m) &lt;- ceiling(avg_point_per_mc)
+    mc_remaining &lt;- mc_remaining - credits(m)
+    accumulated_points &lt;- accumulated_points + (credits(m) * target(m))</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDTranscriptTargetCalculation.png" alt="SDTranscriptTargetCalculation" width="800">
+</div>
+<div class="title">Figure 4. Sequence Diagram of Target Grade calculation</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-case-uc1-calculating-current-cap"><a class="link" href="#use-case-uc1-calculating-current-cap">Use case: [UC1] Calculating current CAP</a></h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User enter modules</p>
+</li>
+<li>
+<p>System recalculates CAP</p>
+</li>
+<li>
+<p>System displays CAP</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1a. User enters invalid parameters</p>
+<div class="ulist">
+<ul>
+<li>
+<p>1a1. System shows an <code>Invalid entry</code> error message</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1b. User enters duplicate Module</p>
+<div class="ulist">
+<ul>
+<li>
+<p>1b1. System shows an <code>Duplicate Module</code> error message</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-case-uc2-view-grades-needed-to-achieve-cap-goal-based-on-previous-grades"><a class="link" href="#use-case-uc2-view-grades-needed-to-achieve-cap-goal-based-on-previous-grades">Use case: [UC2] View grades needed to achieve CAP goal (based on previous grades)</a></h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User enter CAP goal</p>
+</li>
+<li>
+<p>System displays target grades for ungraded modules</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1a. CAP goal is invalid</p>
+<div class="ulist">
+<ul>
+<li>
+<p>1a1. System shows an <code>Invalid CAP Goal</code> error message</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>2a. CAP goal is not achievable</p>
+<div class="ulist">
+<ul>
+<li>
+<p>2a1. System shows an <code>Not achievable</code> error message</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-case-uc3-updating-target-grades"><a class="link" href="#use-case-uc3-updating-target-grades">Use case: [UC3] Updating target grades</a></h3>
+<div class="paragraph">
+<p><strong>Pre-condition:</strong> <code>[UC2]</code> completed</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User modify modules entries</p>
+</li>
+<li>
+<p>System recalculates target grades for ungraded modules</p>
+</li>
+<li>
+<p>System displays new target grades for ungraded modules</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>2a. CAP goal is not achievable with new set of modules</p>
+<div class="ulist">
+<ul>
+<li>
+<p>2a1. System shows an <code>Not achievable</code> error message</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-case-uc4-save-entered-module"><a class="link" href="#use-case-uc4-save-entered-module">Use case: [UC4] Save entered module</a></h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User enters module</p>
+</li>
+<li>
+<p>System saves the modules</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-case-uc5-loading-saved-modules"><a class="link" href="#use-case-uc5-loading-saved-modules">Use case: [UC5] Loading saved modules</a></h3>
+<div class="paragraph">
+<p><strong>Pre-conditions:</strong> <code>[UC4]</code> completed</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User restarts the application</p>
+</li>
+<li>
+<p>User list entered modules</p>
+</li>
+<li>
+<p>System displays saved modules</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="target-grade-calculation"><a class="link" href="#target-grade-calculation">Target Grade Calculation</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="cap-calculation"><a class="link" href="#cap-calculation">CAP Calculation</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Initial CAP should be 0</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Launch the application</p>
+</li>
+<li>
+<p>Delete any Completed Modules already added</p>
+<div class="paragraph">
+<p><strong>Expected</strong>: Current CAP should be 0</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>CAP should increase/decrease correctly while <strong>Adding</strong> modules</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>CAP score of 1 Module</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Add a module(4MC, Grade B+) with the following command<br>
+<code>c_add CS1010 1 1 4 B+</code></p>
+</li>
+<li>
+<p>Observe the current CAP</p>
+<div class="paragraph">
+<p><strong>Expected</strong>: Current CAP should be 4.0</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>CAP score of 3 Module</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Add another module(4MC, Grade A-) with the following command<br>
+<code>c_add CS1020 1 2 4 A-</code></p>
+</li>
+<li>
+<p>Observe the current CAP</p>
+<div class="paragraph">
+<p><strong>Expected</strong>: Current CAP should be 4.25</p>
+</div>
+</li>
+<li>
+<p>Add another module(5MC, Grade C+) with the following command<br>
+<code>c_add CS2010 2 1 5 C+</code></p>
+</li>
+<li>
+<p>Observe the current CAP</p>
+<div class="paragraph">
+<p><strong>Expected</strong>: Current CAP should be 3.58</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>CAP should increase/decrease correctly while <strong>Editing</strong> modules</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Edit one of the module with the following command<br>
+<code>c_edit TBC</code></p>
+</li>
+<li>
+<p>Observe the current CAP</p>
+<div class="paragraph">
+<p><strong>Expected</strong>: Current CAP should be TBC</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>CAP should increase/decrease correctly while <strong>Deleting</strong> modules</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Delete one of the module with the following command<br>
+<code>c_delete CS1020</code></p>
+</li>
+<li>
+<p>Observe the current CAP</p>
+<div class="paragraph">
+<p><strong>Expected</strong>: Current CAP should be 3.17</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="target-grade-calculation-2"><a class="link" href="#target-grade-calculation-2">Target Grade Calculation</a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<em>To follow this guide, ensure the there are only the following 2 modules:</em><br>
+Completed Modules:
+CS1010 year 1 sem 1 credits 4 grade B+<br>
+   <code>c_add cs1010 1 1 4 B+</code><br>
+CS1020 year 1 sem 2 credits 4 grade C+<br>
+   <code>c_add cs2010 1 2 4 C+</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Target Grade should not be calculated when there is no CAP Goal</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Remove any CAP Goal with the following command<br>
+<code>c_goal 0</code></p>
+</li>
+<li>
+<p>Add 2 incomplete module with the following command (One after another)<br>
+<code>c_add CS4234 4 1 4</code><br>
+<code>c_add CS4226 4 1 4</code></p>
+<div class="paragraph">
+<p><strong>Expected</strong>: Both module should have grade NIL</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Target Grade should not update upon entering an impossible CAP Goal</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add an impossible CAP Goal with the following command<br>
+<code>c_goal 5.0</code></p>
+</li>
+<li>
+<p>Observe the CAP Goal field
+<strong>Expected</strong>: CAP Goal should be <code>5.0 (Impossible)</code> and both modules should still have grade NIL</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Target Grade should update upon entering an achievable CAP Goal</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Change the CAP Goal to something achievable with the following command<br>
+<code>c_goal 4.0</code></p>
+</li>
+<li>
+<p>Observe the Target Grades of CS4234 and CS4226
+<strong>Expected</strong>: CS4234 &#8594; <code>A</code> CS4226 &#8594; <code>A-</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Target Grade should update upon modifying the list of modules</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Adding another completed module with good grade</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Add a module with good grade with the following command:<br>
+<code>c_add CS2100 1 2 4 A</code></p>
+</li>
+<li>
+<p>Observe that the Target Grades of CS4234 and CS4226 have dropped
+<strong>Expected</strong>: CS4234 &#8594; <code>A-</code> CS4226 &#8594; <code>B+</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Adding another completed module with bad grade</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Add a module with good grade with the following command:<br>
+<code>c_add CS2105 2 1 4 C+</code></p>
+</li>
+<li>
+<p>Observe that the Target Grades of CS4234 and CS4226 have increased
+<strong>Expected</strong>: CS4234 &#8594; <code>A</code> CS4226 &#8594; <code>A</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Adding another incomplete</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Add a incomplete module with the following command:<br>
+<code>c_add CS4231 4 2 4</code></p>
+</li>
+<li>
+<p>Observe that the Target Grades of CS4234 and CS4226 have dropped
+<strong>Expected</strong>: CS4234 &#8594; <code>A</code> CS4226 &#8594; <code>A-</code> CS4231 &#8594; <code>A-</code></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Adjusting target grade</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Increase a target grade should reduce another</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Adjust CS4226 with the following command<br>
+<code>c_adjust cs4226 A</code></p>
+</li>
+<li>
+<p>Observe the Target Grade of CS4234
+<strong>Expected</strong>: CS4234 &#8594; <code>A-</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Decreasing a target grade should reduce another</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Adjust CS4226 with the following command<br>
+<code>c_adjust cs4226 A-</code></p>
+</li>
+<li>
+<p>Observe the Target Grade of CS4234
+<strong>Expected</strong>: CS4234 &#8594; <code>A</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Decreasing a target grade causing goal to be impossible will not recalculate target grade</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Adjust CS4226 with the following command<br>
+<code>c_adjust cs4226 C+</code></p>
+</li>
+<li>
+<p>Observe the CAP Goal field
+<strong>Expected</strong>: CAP Goal should be <code>4.0 (Impossible)</code></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Adjusting multiple modules</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Adjusting all modules to grades above what was target will be ok
+<code>c_adjust cs4226 A</code><br>
+<code>c_adjust cs4234 A</code></p>
+</li>
+<li>
+<p>Observe the CAP Goal field
+<strong>Expected</strong>: CAP Goal should still be 4.0</p>
+</li>
+<li>
+<p>Adjusting all modules to grades below what was target will result in impossible CAP Goal
+<code>c_adjust cs4226 A-</code><br>
+<code>c_adjust cs4234 A-</code></p>
+</li>
+<li>
+<p>Observe the CAP Goal field
+<strong>Expected</strong>: CAP Goal should be <code>4.0 (Impossible)</code></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 02:02:42 UTC</div></div></div></body></html>
