@@ -34,12 +34,13 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>CAPTracker is for students who wants to use a desktop app for calculating and managing their CAP
-(Cumulative Average Point). More importantly CAPTracker is <strong>optimized for those who prefer to work
-with a CLI (Command Line Interface)</strong> while still having the benefits of a Graphical User Interface
-(GUI). If you can type fast, CAPTracker is the ideal application for calculating your current CAP,
-and predicting grades needed to achieve your ideal CAP in modules that hasn&#8217;t been taken.
-Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>CAPTracker is for students who wants to use a desktop app for calculating and
+managing their CAP (Cumulative Average Point). More importantly CAPTracker is
+<strong>optimized for those who prefer to work with a CLI (Command Line Interface)</strong>
+while still having the benefits of a Graphical User Interface (GUI). If you can
+type fast, CAPTracker is the ideal application for calculating your current CAP,
+and predicting grades needed to achieve your ideal CAP in modules that hasn&#8217;t
+been taken. Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 </div>
 </div>
@@ -55,10 +56,12 @@ Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#82
 <p>Download the latest <code>captracker.jar</code> <a href="https://github.com/CS2103-AY1819S1-T13-4/main/tree/master/releases">here</a>.</p>
 </li>
 <li>
-<p>Copy the file to the folder you would want to use as the home folder for your CAP Tracker.</p>
+<p>Copy the file to the folder you would want to use as the home folder for
+your CAP Tracker.</p>
 </li>
 <li>
-<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+<p>Double-click the file to start the app. The GUI should appear in a few
+seconds.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
@@ -74,11 +77,11 @@ e.g. Typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>c_add</code></strong><code>CS2103 2 1 4 A+</code> : Adds a module <code>CS2103</code> worth <code>4</code> MCs taken in Semester <code>1</code> as a
-Year <code>2</code> student.</p>
+<p><strong><code>c_add</code></strong><code>-m CS2103 -y 2 -s 1 -c 4 -g A+</code> : Adds a module <code>CS2103</code> worth
+<code>4</code> MCs taken in Semester <code>1</code> as a Year <code>2</code> student.</p>
 </li>
 <li>
-<p><code>c_delete -t CS2103 -e 2 -z 1</code> : Deletes <code>CS2103</code> taken in year <code>2</code> semester
+<p>**<code>c_delete -t CS2103 -e 2 -z 1</code> : Deletes <code>CS2103</code> taken in year <code>2</code> semester
 <code>1</code> from CAPTracker.</p>
 </li>
 <li>
@@ -105,7 +108,8 @@ Year <code>2</code> student.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be replaced and supplied by the user.<br>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be replaced and supplied by the
+user.<br>
 e.g. <code>c_add MODULE_CODE YEAR SEMESTER CREDIT [GRADE]</code>:<br>
 <code>c_add CS2103 2 1 4 A+</code>.</p>
 </li>
@@ -128,24 +132,57 @@ e.g. <code>c_add MODULE_CODE YEAR SEMESTER CREDIT [GRADE]</code>:<br>
 <div class="sect2">
 <h3 id="adding-a-module-code-c_add-code"><a class="link" href="#adding-a-module-code-c_add-code">3.2. Adding a module: <code>c_add</code></a></h3>
 <div class="paragraph">
-<p>Adds a module to CapTracker<br>
-Case 1: Module hasn&#8217;t been taken yet<br>
-Format: <code>c_add MODULE_CODE YEAR SEMESTER CREDIT</code><br>
-Case 2: Module already taken<br>
-Format: <code>c_add MODULE_CODE YEAR SEMESTER CREDIT GRADE</code></p>
+<p>Adds a <code><strong>particular</strong></code> module entry in the CAPTracker.<br>
+<strong>Case 1:</strong><br>
+Add incomplete module (Not graded yet).<br>
+<em>Format:</em><br></p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A module with grade provided means it has already been completed while a module without grade means
-it hasn&#8217;t been taken by the user.
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre>c_add -m CODE -y YEAR -s SEMESTER -c CREDIT</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Case 2:</strong><br>
+Add completed module (With grade).<br>
+<em>Format:</em><br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>c_add -m CODE -y YEAR -s SEMESTER -c CREDIT -g GRADE</pre>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Arguments must be in name-value pair format (E.g. <code>-name value</code>).</p>
+</li>
+<li>
+<p>Illegal name or value is not allowed.</p>
+</li>
+<li>
+<p><code>CODE</code> has to be specified</p>
+</li>
+<li>
+<p><code>YEAR</code> has to be specified</p>
+</li>
+<li>
+<p><code>SEMESTER</code> has to be specified</p>
+</li>
+<li>
+<p><code>CREDIT</code> has to be specified</p>
+</li>
+<li>
+<p><code>GRADE</code> has to be specified if it is completed</p>
+</li>
+<li>
+<p>Module should not exist in CAPTracker</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -153,24 +190,19 @@ it hasn&#8217;t been taken by the user.
 <div class="ulist">
 <ul>
 <li>
-<p><code>c_add CS2103 2 1 A+</code></p>
+<p><code>c_edit -t CS2103 -g A+</code><br>
+Change grade of CS2103 to A+.</p>
 </li>
 <li>
-<p><code>c_add CS2103 2 1</code></p>
+<p><code>c_edit -t CS2103 -m CS2103T -c 2</code><br>
+Change the module code and credit of CS2103 to CS2103T and 2 respectively.</p>
 </li>
-</ul>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
 <li>
-<p>Adding of a module that would lead to two modules sharing the same <code>Code</code>, <code>Year</code>, and <code>Semester</code>
-is not allowed.</p>
+<p><code>c_edit -t CS2103 -e 3 -z 2 -s 1</code><br>
+Change the semester of CS2103 taken in year 3 semester 2 to 1. In this specific
+case, CS2103 was retaken and cap tracker has multiple entries of it.</p>
 </li>
 </ul>
-</div>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -193,8 +225,8 @@ is not allowed.</p>
 </div>
 <div class="paragraph">
 <p><strong>Case 2:</strong><br>
-<code><strong>More than one</strong></code> module entry in CAPTracker has the specified target module code. (E.g. Retook
-the module)<br>
+<code><strong>More than one</strong></code> module entry in CAPTracker has the specified target module
+code. (E.g. Retook the module)<br>
 <em>Pretty Print Format:</em><br></p>
 </div>
 <div class="listingblock">
@@ -416,8 +448,8 @@ Adjusts the grade with module code CS2103 taken in year 1 sem 1 to have grade A<
 <div class="sect2">
 <h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.10. Saving the data</a></h3>
 <div class="paragraph">
-<p>CAPTracker data are saved in the hard disk automatically whenever there is a command that leads to
-change in the data.<br>
+<p>CAPTracker data are saved in the hard disk automatically whenever there is a
+command that leads to change in the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
@@ -429,7 +461,7 @@ There is no need to save manually.</p>
 <div class="paragraph">
 <p><strong>Q</strong>: I entered the wrong grade into my module. How do I change it?<br>
 <strong>A</strong>: Use the <code>c_edit</code> command to input the correct information for the module<br>
-<code>c_edit MODULE_CODE -grade ACTUAL_GRADE</code></p>
+<code>c_edit -t MODULE_CODE -g ACTUAL_GRADE</code></p>
 </div>
 </div>
 </div>
@@ -440,24 +472,23 @@ There is no need to save manually.</p>
 <ul>
 <li>
 <p><strong>Add</strong><br>
-<code>c_add MODULE_CODE YEAR SEMESTER [GRADE]</code><br>
-e.g. <code>c_add CS2103 2 1 4 A+</code></p>
+<code>c_add -m MODULE_CODE -y YEAR -s SEMESTER -c CREDIT [-g GRADE]</code><br>
+e.g. <code>c_add -m CS2103 -y 2 -s 1 -c 4 -g A+</code></p>
 </li>
 <li>
 <p><strong>Edit</strong> :<br>
-<code>c_edit [-code MODULE_CODE] [-year YEAR] [-semester SEMESTER] [-credit CREDIT] [-grade GRADE]</code><br>
-e.g. <code>c_edit CS2103 -grade A+</code>
-or<br>
-<code>c_edit YEAR SEMESTER [-code MODULE_CODE] [-year YEAR] [-semester SEMESTER] [-credit CREDIT] [-grade GRADE]</code>+
-e.g. <code>c_edit CS2103 2 1 -grade A+</code></p>
+<code>c_edit -t TARGET_MODULE_CODE [-e TARGET_YEAR -z TARGET_SEMESTER]
+[-m MODULE_CODE]
+[-y YEAR]
+[-s SEMESTER]
+[-c CREDIT]
+[-g GRADE]</code><br>
+e.g. <code>c_edit -t CS2103 -grade A+</code></p>
 </li>
 <li>
 <p><strong>Delete</strong> :<br>
-<code>c_delete MODULE_CODE</code><br>
-e.g. <code>c_delete CS2103</code><br>
-or<br>
-<code>c_delete MODULE_CODE [YEAR SEMESTER]</code><br>
-e.g. <code>c_delete CS2103 1 2</code><br></p>
+<code>c_delete -t MODULE_CODE [-e TARGET_YEAR -z TARGET_SEMESTER]</code><br>
+e.g. <code>c_delete CS2103</code></p>
 </li>
 <li>
 <p><strong>Goal</strong> : <code>c_goal CAP_GOAL</code><br>
@@ -485,4 +516,4 @@ e.g. <code>c_adjust CS2103 1 1 A</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 03:12:00 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 12:15:53 UTC</div></div></div></body></html>
