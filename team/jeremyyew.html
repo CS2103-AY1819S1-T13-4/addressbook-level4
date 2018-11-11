@@ -20,29 +20,52 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: TBC.</p>
+<p><strong>Major enhancement</strong>: Transcript file storage feature.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: TBC.</p>
+<p>What it does: Automatically saves and updates all of user&#8217;s transcript data into a file, and loads this file. File path for transcript data file can be changed in preferences file.</p>
 </li>
 <li>
-<p>Justification: TBC.</p>
+<p>Justification: Users should be able to access previously created modules when opening the app again, otherwise they would have to re-enter all their modules again. They can also load their data in another computer or share it with other users if desired, simply by sharing the file itself.</p>
 </li>
 <li>
-<p>Highlights: TBC.</p>
+<p>Highlights:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Transcript data file is updated whenever the in-memory Transcript object is changed.</p>
 </li>
 <li>
-<p>Credits: TBC.</p>
+<p>By using the <code>Jackson</code> library to store the Transcript data as a JSON file instead of an XML file, we avoid having to write <code>XMLSerializableTranscript</code> and <code>XMLAdaptedModule</code> classes. Instead, we simply register a custom <code>JSONTranscriptDeserializer</code> on the <code>ReadOnlyTranscript</code> class so that when we read from the JSON file, Jackson&#8217;s <code>ObjectMapper</code> is able to use the values to reconstruct the saved object. This reduces code complexity.</p>
+</li>
+<li>
+<p><code>JSONTranscriptDeserializer</code> uses null-returning node access with <code>get</code> when a missing value signifies type-incorrectness and should raise an exception. It uses safe node access with <code>path</code> when the field may be missing but the object can be instantiated without it.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: TBC.</p>
+<p>Credits: Relied on patterns in <code>Storage</code> classes in AB-4.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p><strong>Minor enhancement</strong>: Display and updating of current CAP and CAP Goal.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Displays current CAP, immediately updates whenever completed modules are edited. Displays CAP Goal if set, else displays NIL; immediately updates whenever incomplete modules are changed or adjusted.</p>
+</li>
+<li>
+<p>Justification: Users should be able to view their current CAP and CAP Goal as they are updated, without having to request for them through a command. This enables them to easily evaluate their current academic standing, and set new academic goals.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>:  <a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=jeremy_yew" class="bare">https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=jeremy_yew</a></p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -53,35 +76,55 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
+<p>Guided planning of early project timeline and milestone setting.</p>
+</li>
+<li>
+<p>Managed release <code>v1.1</code> (1 release) on GitHub.</p>
+</li>
+<li>
+<p>Maintained issue tracker and review/merger of pull requests.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
 <p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Enabled app to load initial sample module data (<a href="https://github.com/CS2103-AY1819S1-T13-4/main/pull/27">#27</a>).</p>
+</li>
+<li>
+<p>Coded initial GUI layout (<a href="https://github.com/CS2103-AY1819S1-T13-4/main/pull/52">#52</a>).</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated existing content of the Storage Section of Developer Guide.</p>
+</li>
+<li>
+<p>Updated existing content of the "Saving your module data" section of User Guide, and helped refined other member&#8217;s documentation of commands.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Community:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): TBC.</p>
-</li>
-<li>
-<p>Contributed to forum discussions (examples:  TBC.)</p>
-</li>
-<li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  TBC.)</p>
+<p>PRs reviewed (with non-trivial review comments):
+<a href="https://github.com/CS2103-AY1819S1-T13-4/main/pull/23">#23</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-4/main/pull/37">#37</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-4/main/pull/121">#121</a>,</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Tools:</p>
 </li>
 </ul>
 </div>
@@ -103,11 +146,10 @@
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Note: Since my main feature is non-interactive, most of my contributions to the User Guide involve refining existing sections by team members.
+== Contributions to the Developer Guide</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
@@ -119,4 +161,4 @@
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 09:40:41 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 12:47:12 UTC</div></div></div></body></html>
