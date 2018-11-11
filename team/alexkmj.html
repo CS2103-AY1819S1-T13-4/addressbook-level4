@@ -155,217 +155,258 @@ kLoC.</p>
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="adding-a-module-code-c_add-code"><a class="link" href="#adding-a-module-code-c_add-code">Adding a module: <code>c_add</code></a></h3>
+<h3 id="adding-a-module-code-add-code"><a class="link" href="#adding-a-module-code-add-code">Adding a module: <code>add</code></a></h3>
 <div class="paragraph">
-<p>Adds a <code><strong>particular</strong></code> module entry in the CAPTracker.<br>
-<strong>Case 1:</strong><br>
-Add incomplete module (Not graded yet).<br>
-<em>Format:</em><br></p>
+<p>Adds a <code><strong>particular</strong></code> module entry to the <em>CAPTracker</em>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Case 1:</strong><br>
+Add <code>incomplete</code> (not graded yet) module.</p>
+</div>
+<div class="paragraph">
+<p><em>Format:</em><br></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>c_add -m CODE -y YEAR -s SEMESTER -c CREDIT</pre>
+<pre> add -m CODE -y YEAR -s SEMESTER -c CREDIT</pre>
 </div>
 </div>
 <div class="paragraph">
 <p><strong>Case 2:</strong><br>
-Add completed module (With grade).<br>
-<em>Format:</em><br></p>
+Add <code>completed</code> (already graded) module.</p>
+</div>
+<div class="paragraph">
+<p><em>Format:</em><br></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>c_add -m CODE -y YEAR -s SEMESTER -c CREDIT -g GRADE</pre>
+<pre> add -m CODE -y YEAR -s SEMESTER -c CREDIT -g GRADE</pre>
 </div>
 </div>
-<div class="sidebarblock">
-<div class="content">
+<div class="paragraph">
+<p><strong>Examples</strong>:</p>
+</div>
+<div class="paragraph">
+<p>Command: <code>add -m MA1521 -y 1 -s 2 -c 4 -grade A</code><br>
+Adds a module with:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Arguments must be in name-value pair format (E.g. <code>-name value</code>).</p>
+<p>Module code <code>MA1521</code></p>
 </li>
 <li>
-<p>Illegal name or value is not allowed.</p>
+<p>Taken in year <code>1</code> semester <code>2</code></p>
 </li>
 <li>
-<p><code>CODE</code> has to be specified</p>
+<p>Worth <code>4</code> module credits</p>
 </li>
 <li>
-<p><code>YEAR</code> has to be specified</p>
-</li>
-<li>
-<p><code>SEMESTER</code> has to be specified</p>
-</li>
-<li>
-<p><code>CREDIT</code> has to be specified</p>
-</li>
-<li>
-<p><code>GRADE</code> has to be specified if it is completed</p>
-</li>
-<li>
-<p>Module should not exist in CAPTracker</p>
+<p>Graded <code>A</code></p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Command: <code>add -m CFG1010 -y 1 -s 1 -c 2 -grade CS</code><br>
+Adds a module with:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Module code <code>CFG1010</code></p>
+</li>
+<li>
+<p>Taken in year <code>1</code> semester <code>1</code></p>
+</li>
+<li>
+<p>Worth <code>2</code> module credits</p>
+</li>
+<li>
+<p>Graded <code>CU</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Command: <code>add -m CS2103 -y 2 -s 1 -c 4</code><br>
+Adds a module with:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Module code <code>CFG1010</code></p>
+</li>
+<li>
+<p>Taken in year <code>2</code> semester <code>1</code></p>
+</li>
+<li>
+<p>Worth <code>4</code> module credits</p>
+</li>
+<li>
+<p>Not completed yet</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+- Arguments must be in name-value pair format (-name value)<br>
+- Illegal name or value is not allowed<br>
+- <code>CODE</code> has to be specified<br>
+- <code>YEAR</code> has to be specified<br>
+- <code>SEMESTER</code> has to be specified<br>
+- <code>CREDIT</code> has to be specified<br>
+- <code>GRADE</code> has to be specified if it is completed<br>
+- Module should not exist in CAPTracker
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-module-code-c_edit-code"><a class="link" href="#editing-a-module-code-c_edit-code">Editing a module : <code>c_edit</code></a></h3>
+<h3 id="editing-a-module-code-edit-code"><a class="link" href="#editing-a-module-code-edit-code">Editing a module : <code>edit</code></a></h3>
 <div class="paragraph">
-<p>Edits fields of a <code><strong>particular</strong></code> module entry in the CAPTracker.<br>
-<strong>Case 1:</strong><br>
-<code><strong>Only one</strong></code> module entry have the specified target module code.<br>
-<em>Pretty Print Format:</em><br></p>
+<p>Edits fields of a <code><strong>particular</strong></code> module entry in the CAPTracker.</p>
+</div>
+<div class="paragraph">
+<p><strong>Case 1:</strong><br>
+Only <code>one</code> module entry have the specified target module code.</p>
+</div>
+<div class="paragraph">
+<p><em>Pretty Print Format:</em><br></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>c_edit -t TARGET_CODE
-    [-m NEW_CODE]
-    [-y NEW_YEAR]
+<pre>edit -t TARGET_CODE
+    [-m NEW_CODE    ]
+    [-y NEW_YEAR    ]
     [-s NEW_SEMESTER]
-    [-c NEW_CREDIT]
-    [-g NEW_GRADE]</pre>
+    [-c NEW_CREDIT  ]
+    [-g NEW_GRADE   ]</pre>
 </div>
 </div>
 <div class="paragraph">
 <p><strong>Case 2:</strong><br>
-<code><strong>More than one</strong></code> module entry in CAPTracker has the specified target module
-code. (E.g. Retook the module)<br>
-<em>Pretty Print Format:</em><br></p>
+<code>Two or more</code> module entries has the specified target module code. (E.g. Retook
+the module)</p>
+</div>
+<div class="paragraph">
+<p><em>Pretty Print Format:</em><br></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>c_edit -t TARGET_CODE -e TARGET_YEAR -z TARGET_SEMESTER
-    [-m NEW_CODE]
-    [-y NEW_YEAR]
+<pre>edit -t TARGET_CODE -e TARGET_YEAR -z TARGET_SEMESTER
+    [-m NEW_CODE    ]
+    [-y NEW_YEAR    ]
     [-s NEW_SEMESTER]
-    [-c NEW_CREDIT]
-    [-g NEW_GRADE]</pre>
+    [-c NEW_CREDIT  ]
+    [-g NEW_GRADE   ]</pre>
 </div>
 </div>
-<div class="sidebarblock">
+<div class="paragraph">
+<p><strong>Examples</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>Command</strong>: <code>edit -t MA1521 -g A+</code><br>
+Change grade of <code>MA1521</code> to <code>A+</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Command</strong>: <code>edit -t CFG1010 -m ST2334 -c 4</code><br>
+Change module credit to <code>4</code> and module code to <code>ST2334</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Command</strong>: <code>edit -t CFG1020 -e 2 -z 1 -g CS</code><br>
+Change the grade of <code>CFG1020</code> taken in year <code>2</code> and semester <code>1</code> to 1.<br>
+In this specific case, <code>CFG1020</code> was retaken and there exist multiple entries
+of it.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+- Arguments must be in name-value pair format (E.g. <code>-name value</code>)<br>
+- Illegal name or value is not allowed<br>
+- <code>TARGET_CODE</code> has to be specified<br>
+- <code>TARGET_YEAR</code> is not specified if and only if <code>TARGET_SEMESTER</code> is also not
+specified<br>
+- At least one new value has to be specified<br>
+- The targeted module entry should exist in the CAPTracker<br>
+- <code>TARGET_YEAR</code> and <code>TARGET_SEMESTER</code> must be specified if there exist multiple
+entries with the same module <code>TARGET_CODE</code><br>
+- The edit cannot lead to two module entries sharing the same module code,
+year, and semester
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-module-code-delete-code"><a class="link" href="#deleting-a-module-code-delete-code">Deleting a module : <code>delete</code></a></h3>
+<div class="paragraph">
+<p>Deletes a <code><strong>particular</strong></code> module entry in the CAPTracker.</p>
+</div>
+<div class="paragraph">
+<p><strong>Case 1:</strong><br>
+Only <code>one</code> module entry have the specified target module code.</p>
+</div>
+<div class="paragraph">
+<p><em>Format:</em><br></p>
+</div>
+<div class="listingblock">
 <div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Arguments must be in name-value pair format (E.g. <code>-name value</code>).</p>
-</li>
-<li>
-<p>Illegal name or value is not allowed.</p>
-</li>
-<li>
-<p><code>TARGET_CODE</code> has to be specified.</p>
-</li>
-<li>
-<p><code>TARGET_YEAR</code> can be null if and only if <code>TARGET_SEMESTER</code> is null.</p>
-</li>
-<li>
-<p>At least one of <code>NEW_CODE</code>, <code>NEW_YEAR</code>, <code>NEW_SEMESTER</code>, <code>NEW_CREDIT</code>, or
-<code>NEW_GRADE</code> has to be specified.</p>
-</li>
-<li>
-<p>The targeted module entry should exist in the CAPTracker.</p>
-</li>
-<li>
-<p><code>TARGET_YEAR</code> and <code>TARGET_SEMESTER</code> of the targeted entry must be specified
-if there exist multiple entries with the same module <code>TARGET_CODE</code>.</p>
-</li>
-<li>
-<p>The edit cannot lead to two module entries sharing the same module <code>Code</code>,
-<code>Year</code>, and <code>Semester</code>.</p>
-</li>
-</ul>
+<pre>delete -t TARGET_CODE</pre>
 </div>
+</div>
+<div class="paragraph">
+<p><strong>Case 2:</strong><br>
+<code>Two or more</code> module entries has the specified target module code. (E.g. Retook
+the module)</p>
+</div>
+<div class="paragraph">
+<p><em>Format:</em><br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>delete -t TARGET_CODE -e TARGET_YEAR -z TARGET_SEMESTER</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>c_edit -t CS2103 -g A+</code><br>
-Change grade of CS2103 to A+.</p>
-</li>
-<li>
-<p><code>c_edit -t CS2103 -m CS2103T -c 2</code><br>
-Change the module code and credit of CS2103 to CS2103T and 2 respectively.</p>
-</li>
-<li>
-<p><code>c_edit -t CS2103 -e 3 -z 2 -s 1</code><br>
-Change the semester of CS2103 taken in year 3 semester 2 to 1. In this specific
-case, CS2103 was retaken and cap tracker has multiple entries of it.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-a-module-code-c_delete-code"><a class="link" href="#deleting-a-module-code-c_delete-code">Deleting a module : <code>c_delete</code></a></h3>
 <div class="paragraph">
-<p>Deletes a <code><strong>particular</strong></code> module entry in the CAPTracker.<br>
-<strong>Case 1:</strong><br>
-<code><strong>Only one</strong></code> module entry have the specified target module code.<br>
-<em>Format:</em><br></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>c_delete -t TARGET_CODE</pre>
-</div>
+<p><strong>Command</strong>: <code>delete -t CS2103</code><br>
+Deletes the only <code>CS2103</code> module.</p>
 </div>
 <div class="paragraph">
-<p><strong>Case 2:</strong><br>
-<code><strong>More than one</strong></code> module entry in CAPTracker has the specified target module code. (E.g. Retook
-the module)<br>
-<em>Format:</em><br></p>
+<p><strong>Command</strong>: <code>delete -t CS2103 -e 3 -z 2</code><br>
+Deletes <code>CS2103</code> taken in year <code>3</code> semester <code>2</code>.<br>
+In this specific case, <code>CS2103</code> was retaken and there exist multiple entries
+of it.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>c_delete -t TARGET_CODE -e TARGET_YEAR -z TARGET_SEMESTER</pre>
-</div>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Arguments must be in name-value pair format (E.g. <code>-name value</code>).</p>
-</li>
-<li>
-<p>Illegal name or value is not allowed.</p>
-</li>
-<li>
-<p><code>TARGET_CODE</code> has to be specified.</p>
-</li>
-<li>
-<p><code>TARGET_YEAR</code> can be null if and only if <code>TARGET_SEMESTER</code> is null.</p>
-</li>
-<li>
-<p>The targeted module entry should exist in the CAPTracker.</p>
-</li>
-<li>
-<p><code>TARGET_YEAR</code> and <code>TARGET_SEMESTER</code> of the targeted entry must be specified
-if there exist multiple entries with the same module <code>TARGET_CODE</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>c_delete -t CS2103</code><br>
-Deletes the only CS2103 module.</p>
-</li>
-<li>
-<p><code>c_delete -t CS2103 -e 3 -z 2</code><br>
-Deletes CS2103 taken in year 3 semester 2. In this specific case, CS2103 was
-retaken and cap tracker has multiple entries of it.</p>
-</li>
-</ul>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+- Arguments must be in name-value pair format (E.g. <code>-name value</code>)<br>
+- Illegal name or value is not allowed<br>
+- <code>TARGET_CODE</code> has to be specified<br>
+- <code>TARGET_YEAR</code> is not specified if and only if <code>TARGET_SEMESTER</code> is also not
+specified<br>
+- The targeted module entry should exist in the CAPTracker<br>
+- <code>TARGET_YEAR</code> and <code>TARGET_SEMESTER</code> of the targeted entry must be specified
+if there exist multiple entries with the same module <code>TARGET_CODE</code>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -384,4 +425,4 @@ retaken and cap tracker has multiple entries of it.</p>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 09:39:52 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 09:40:41 UTC</div></div></div></body></html>
