@@ -683,7 +683,7 @@ none of the proposed target <code>Grade</code> will be <code>A-</code> or above.
 <div class="content">
 <pre class="CodeRay highlight"><code>CG &lt;- CAP goal of user.
 TC &lt;- total credit of completed and incomplete modules.
-PO &lt;- total points achieved from completed modules.
+PO &lt;- total points achieved from completed and adjusted modules.
 P &lt;- CG * TC - PO // total points needed to achieve from incomplete modules.
 
 mc_remaining &lt;- sum of module credit of all incomplete modules
@@ -694,6 +694,10 @@ for every incomplete Module m:
     mc_remaining &lt;- mc_remaining - credits(m)
     accumulated_points &lt;- accumulated_points + (credits(m) * target(m))</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>This sequence diagram shows the interaction of the different classes involved
+in the process of creating a new Module with updated target grade</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -708,13 +712,13 @@ for every incomplete Module m:
 <div class="content">
 <img src="images/activityDiagramTargetGradeCalculationWhenChanged.png" alt="activityDiagramTargetGradeCalculationWhenChanged" width="800">
 </div>
-<div class="title">Figure 13. Activity Diagram of Target Grade Calculation</div>
+<div class="title">Figure 13. Activity Diagram of High level view of Target Grade Calculation</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/activityDiagramTargetGradeCalculationActualCalculation.png" alt="activityDiagramTargetGradeCalculationActualCalculation" width="800">
 </div>
-<div class="title">Figure 14. Activity Diagram of the actual Target Grade Calculation</div>
+<div class="title">Figure 14. Activity Diagram of Calculate New Target Grade</div>
 </div>
 </div>
 </div>
@@ -2216,4 +2220,4 @@ with <a href="https://gradecalc.info/sg/nus/cumulative_gpa_calc.pl">This URL</a>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 13:49:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 17:07:49 UTC</div></div></div></body></html>
