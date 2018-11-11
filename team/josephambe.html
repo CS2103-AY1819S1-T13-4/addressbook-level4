@@ -10,14 +10,126 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>CapTracker is a desktop application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
+<p>CAPTracker is for students who wants to use a desktop app for calculating and managing their
+CAP (Cumulative Average Point), allowing users to calculate their current CAP, and predict
+grades needed to achieve their ideal CAP in modules that haven’t been taken.</p>
+</div>
+<div class="paragraph">
+<p>CAPTracker is optimized for those who prefer to work with a CLI (Command Line Interface)
+while still having the benefits of a Graphical User Interface (GUI) created with JavaFX.</p>
+</div>
+<div class="paragraph">
+<p>CAPTracker is written in Java and has about 10kLoC.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
 <div class="sectionbody">
-
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: added the ability to view, display, and interact with CAPTracker.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows users to understand and intuitively use the app with minimum
+additional instructions or hassel.</p>
+</li>
+<li>
+<p>Justification: this feature improves CAPTracker significantly as it is the
+base at which the user interacts with the product. It not only increases the
+ applications usability but also the seamless completion of tasks that
+ CAPTracker allows.</p>
+</li>
+<li>
+<p>Highlights: This enhancement affects the way the user uses the product
+and how vital information such as CAP calculations and predictions are
+displayed. It requires an understanding of user interaction and behaviour,
+as well as skills in design, colour complentation, and visual communication.
+The implementation was challenging in that it forced me to think like the
+user and have a good understanding of how the whole project works together
+as I was combining results from various aspects of the software project.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Added a help section that gives the user hints on
+what commands they can use to navigate the application depending on what
+command they were trying to execute.</p>
+</li>
+<li>
+<p><strong>Code contributed</strong>: <a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=josephambe" class="bare">https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=josephambe</a></p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed the initial setup of the project including delegating and
+organising tasks such as use case development, prioritizing user stories,
+identifying our value proposition, completing product surveys,
+separating non-functional requirements, defining project direction,
+target user profile, and problem addressed.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Enhanced the automated replies from the application when the user enters
+an incorrect command. Specialised it to respond to specific commands entered
+and provide useful information that prevents the user from constantly having
+to refer back to the User Guide.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the Developer Guide #2.2, #2.3,</p>
+</li>
+<li>
+<p>Updated the User Guide on #3.11</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PR’s reviewed with non-trivial comments, and suggestions.</p>
+</li>
+<li>
+<p>Contributed to discussions on the Slack Channel</p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other team members in class</p>
+</li>
+<li>
+<p>The UI features I created was adopted by Yingnan in Group T13</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -33,6 +145,38 @@
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="understanding-the-user-interface"><a class="link" href="#understanding-the-user-interface">Understanding the User Interface</a></h3>
+<div class="paragraph">
+<p>Understanding the User Interface can be tricky - what do all the different colours mean? How do I
+know what has been saved or not? Where can I see new modules I&#8217;ve added?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To view new modules you&#8217;ve added, scroll down to the bottom of the pannel that you have categorized your
+module under; either the 'Completed Modules' panel on the left, or the 'Incomplete Modules' panel on the
+right. Your new entry should be at the bottom of these lists.</p>
+</li>
+<li>
+<p>Understanding the colours. The grades of modules in the 'Completed Modules' panel on the left
+are circled in GREEN. This indicates that this particular module has already been taken and this is
+a grade that the user does not need to worry about; it is in the past.
+The grades in the the 'Incomplete Modules' panel on the right  are circled in RED. This indicates
+that this particular module has not been taken and that the grade displayed in this RED circle is
+not certain. It is a grade that the user needs to be aware of as it&#8217;s outcome will impact the
+users overall CAP score.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>PLEASE NOTE</strong>:
+As I am focused on the UI design of the product, there is a limited amount of information I can contribute to the User Guide. This is because if I need to explain the interface in too much detail, it means the user can’t intuitively use the product, which in turn, means I haven’t designed a very good interface.</p>
+</div>
+<div class="paragraph">
+<p>Part of my User Guide, which reminds users the format in which to type out commands, is integrated in the UI. This means that the user doesn’t have to keep switching back and forth between the User Guide and the product; they can receive the same information in real time when they need it.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -48,5 +192,80 @@
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="Design-Ui"><a class="link" href="#Design-Ui">UI component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 09:37:40 UTC</div></div></div></body></html>
+<div class="title">Figure 1. Structure of the UI Component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code>, 'ModuleListPanel' etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="{repoURL}/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="{repoURL}/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component uses JavaFX UI 'DarkTheme' to draw different text, sizes, fonts, and colours from. The actual data displayed in the UI is called using a sample transcript which is created through the Module and Transcript classes. The values themselves are abstracted from the '.fxml' files so the UI display can be easily updated.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Executes user commands using the <code>Logic</code> component.</p>
+</li>
+<li>
+<p>Binds itself to some data in the <code>Model</code> so that the UI can auto-update when data in the <code>Model</code> change.</p>
+</li>
+<li>
+<p>Responds to events raised from various parts of the App and updates the UI accordingly.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-Layout"><a class="link" href="#Design-Layout">UI component</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The bottom two thirds of the UI is seperated into 2 panels to clearly identify the different outputs from commands entered by the user.</p>
+</li>
+<li>
+<p>The first panel on the left is for Modules that have already been completed; this is shown by the GREEN circles which
+surround the grades which indicate this grade is "set" and of no concern to the user anymore.</p>
+</li>
+<li>
+<p>The second panel on the right is for Modules that have not yet been completed by the user; this is shown by the RED
+circles which surround the grades to indicate that this is a grade the user should be aware of. The red indicates an
+urgency towards that module as it&#8217;s outcome will affect the users predicted CAP goal.</p>
+</li>
+<li>
+<p>The top third of the UI is seperated into four distinct rows;</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The first row contains the title and drop down menu&#8217;s for <code>File</code> and <code>Help</code> options.</p>
+</li>
+<li>
+<p>The second row is the command line and how the user interacts with the application. Notice there is no button for the
+user to click when they are ready to enter their command; it is expected the user is familiar with Command Line Interface
+and will know to use the <code>enter</code> button on their keyboard when ready to submit a command to the app.</p>
+</li>
+<li>
+<p>The third row is where replies from the application to the user will be displayed. When the commands become too big
+for the box, a scroll down option becomes available for the user to continue reading the message.</p>
+</li>
+<li>
+<p>The fourth row displays the summary of the users current CAP goal and their target CAP.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 09:39:52 UTC</div></div></div></body></html>

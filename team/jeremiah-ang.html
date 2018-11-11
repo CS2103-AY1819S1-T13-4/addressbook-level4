@@ -20,17 +20,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: Added the <strong>Target Grade Calculation</strong> feature.</p>
+<p><strong>Major enhancement</strong>: Implemented the <strong>CAP &amp; Target Grade Calculation</strong> feature in Model.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: Shows user what grades he/she needs to achieve
-for those incomplete modules so as to achieve his/her CAP goal.</p>
+<p>What it does: Calculates the current CAP of the user and also calculate the target grades the user have to achieve
+in order to achieve their CAP Goal.</p>
 </li>
 <li>
-<p>Justification: This is one of the main Use Case of the application,
-to allow users to quickly verify if attaining their CAP goal is still feasible or
-whether withdrawing from NUS would be a wiser choice.</p>
+<p>Justification: This is one of the <strong>must-have</strong> User Story of the application,
+to allow users to verify if they are able to graduate with their desired CAP Goal</p>
 </li>
 <li>
 <p>Highlights:</p>
@@ -55,7 +54,17 @@ in the transcript and updated on the UI.</p>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: Added the <strong>Current CAP Calculation</strong> feature.</p>
+<p><strong>Minor enhancement</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Added <code>adjust</code> command in Logic</p>
+</li>
+<li>
+<p>Added <code>goal</code> command in Logic</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Code Contributed</strong>: <a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=jeremiah_ang" class="bare">https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=jeremiah_ang</a></p>
@@ -316,6 +325,21 @@ for every incomplete Module m:
 <img src="../images/SDTranscriptTargetCalculation.png" alt="SDTranscriptTargetCalculation" width="800">
 </div>
 <div class="title">Figure 4. Sequence Diagram of Target Grade calculation</div>
+</div>
+<div class="paragraph">
+<p>And below the activity diagram to further illustrate several exceptional cases.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/activityDiagramTargetGradeCalculationWhenChanged.png" alt="activityDiagramTargetGradeCalculationWhenChanged" width="800">
+</div>
+<div class="title">Figure 5. Activity Diagram of Target Grade Calculation</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/activityDiagramTargetGradeCalculationActualCalculation.png" alt="activityDiagramTargetGradeCalculationActualCalculation" width="800">
+</div>
+<div class="title">Figure 6. Activity Diagram of the actual Target Grade Calculation</div>
 </div>
 </div>
 </div>
@@ -1077,4 +1101,4 @@ with <a href="https://gradecalc.info/sg/nus/cumulative_gpa_calc.pl">This URL</a>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 09:37:40 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 09:39:52 UTC</div></div></div></body></html>
