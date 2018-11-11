@@ -101,7 +101,7 @@ to refer back to the User Guide.</p>
 <p>Updated the Developer Guide #2.2, #2.3,</p>
 </li>
 <li>
-<p>Updated the User Guide on #3.11</p>
+<p>Updated the User Guide on #3.11, 4.FAQ.</p>
 </li>
 </ul>
 </div>
@@ -145,6 +145,14 @@ to refer back to the User Guide.</p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p><strong>Initial Quick Start Image</strong>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ui.png" alt="Ui" width="790">
+</div>
+</div>
 <div class="sect2">
 <h3 id="understanding-the-user-interface"><a class="link" href="#understanding-the-user-interface">Understanding the User Interface</a></h3>
 <div class="paragraph">
@@ -180,6 +188,49 @@ As I am focused on the UI design of the product, there is a limited amount of in
 </div>
 </div>
 <div class="sect1">
+<h2 id="faq"><a class="link" href="#faq">FAQ</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Q</strong>: I entered the year I took my module, 2018, and it doesn&#8217;t work. Why not?</p>
+</div>
+<div class="paragraph">
+<p><strong>A</strong>: The year of the module in CAPTracker doesn&#8217;t refer to the calander year, but
+instead the year that you are studying at. For example, a module taken in your
+second year of study would have a year value of 2.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: I entered a new module but can&#8217;t see it in the app. Where is it?</p>
+</div>
+<div class="paragraph">
+<p><strong>A</strong>: New modules you have added will appear at the bottom of the list in either
+the 'Completed Modules' list or the 'Incomplete Modules' list depending on your
+specification. Scroll down to the bottom of these lists to find your new module;
+it may not appear without you scrolling if there are already a number of mdoules
+entered!</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: Why does my CAP goal say 'Impossible'?</p>
+</div>
+<div class="paragraph">
+<p><strong>A</strong>: Whether or not the users CAP goal is achievable is based on the grades of
+completed modules and the number of incomplete modules the user has entered. If
+the completed modules do not have sufficient grades to meet the CAP goal, try to
+add some modules you are planning to take; it may be that you need an A+ is four
+other modules before your CAP goal can be achieved. It is also based on the
+adjustments made by the user. For example, if the user originally enters</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: I made the wrong adjustment to a module&#8230;&#8203;how do I remove the adjustment
+I made?</p>
+</div>
+<div class="paragraph">
+<p><strong>A</strong>: To remove an incorrect adjustment, you need to delete that module (see
+delete command chapter 3.4) and add it back in with the desired/correct
+adjustments. A direct solution will be implemented in v2.0</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
@@ -193,12 +244,149 @@ As I am focused on the UI design of the product, there is a limited amount of in
 </tbody>
 </table>
 <div class="sect2">
+<h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">Architecture</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Architecture.png" alt="Architecture" width="600">
+</div>
+<div class="title">Figure 1. Architecture Diagram</div>
+</div>
+<div class="paragraph">
+<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the App. Given below is a quick overview of each component.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="{repoURL}/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>Main</code> has only one class called <a href="{repoURL}/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>At app launch: Initializes the components in the correct sequence, and connects them up with each other.</p>
+</li>
+<li>
+<p>At shut down: Shuts down the components and invokes cleanup method where necessary.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="#Design-Commons"><strong><code>Commons</code></strong></a> represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EventsCenter</code> : This class (written using <a href="https://github.com/google/guava/wiki/EventBusExplained">Google&#8217;s Event Bus library</a>) is used by components to communicate with other components using events (i.e. a form of <em>Event Driven</em> design)</p>
+</li>
+<li>
+<p><code>LogsCenter</code> : Used by many classes to write log messages to the App&#8217;s log file.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The rest of the App consists of four components.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#Design-Ui"><strong><code>UI</code></strong></a>: The UI of the App.</p>
+</li>
+<li>
+<p><a href="#Design-Logic"><strong><code>Logic</code></strong></a>: The command executor.</p>
+</li>
+<li>
+<p><a href="#Design-Model"><strong><code>Model</code></strong></a>: Holds the data of the App in-memory.</p>
+</li>
+<li>
+<p><a href="#Design-Storage"><strong><code>Storage</code></strong></a>: Reads data from, and writes data to, the hard disk.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each of the four components</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Defines its <em>API</em> in an <code>interface</code> with the same name as the Component.</p>
+</li>
+<li>
+<p>Exposes its functionality using a <code>{Component Name}Manager</code> class.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, the <code>Logic</code> component (see the class diagram given below) defines it&#8217;s API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
+</div>
+<div class="title">Figure 2. Class Diagram of the Logic Component</div>
+</div>
+<h4 id="events-driven-nature-of-the-design" class="discrete">Events-Driven nature of the design</h4>
+<div class="paragraph">
+<p>The <em>Sequence Diagram</em> below shows how the components interact for the scenario where the user issues the command <code>delete 1</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforDeletePerson.png" alt="SDforDeletePerson" width="800">
+</div>
+<div class="title">Figure 3. Component interactions for <code>delete 1</code> command (part 1)</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Note how the <code>Model</code> simply raises a <code>AddressBookChangedEvent</code> when the Address Book data are changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The diagram below shows how the <code>EventsCenter</code> reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforDeletePersonEventHandling.png" alt="SDforDeletePersonEventHandling" width="800">
+</div>
+<div class="title">Figure 4. Component interactions for <code>delete 1</code> command (part 2)</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Note how the event is propagated through the <code>EventsCenter</code> to the <code>Storage</code> and <code>UI</code> without <code>Model</code> having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The sections below give more details of each component.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="Design-Ui"><a class="link" href="#Design-Ui">UI component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="../images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
 </div>
-<div class="title">Figure 1. Structure of the UI Component</div>
+<div class="title">Figure 5. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
@@ -266,6 +454,141 @@ for the box, a scroll down option becomes available for the user to continue rea
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>The following was not pushed to Git by me, but I contributed to the final outcome
+through team discussions during meetings and by sending my own User Stories, Value
+ Proposition, and Target User Profile via Slack and email to members of the team.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 12:47:12 UTC</div></div></div></body></html>
+</div>
+</div>
+<div class="sect1">
+<h2 id="value-proposition"><a class="link" href="#value-proposition">Appendix A: Value Proposition</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Helps students manage their CAP and predict what grades they need to reach their CAP goal.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="target-user-profile"><a class="link" href="#target-user-profile">Appendix B: Target User Profile</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>An NUS Student who has a need to keep track of current CAP, calculate expected CAP, and grades required to achieve desired CAP.</p>
+</li>
+<li>
+<p>Prefer desktop apps over other types.</p>
+</li>
+<li>
+<p>Can type fast.</p>
+</li>
+<li>
+<p>Prefers typing over mouse input.</p>
+</li>
+<li>
+<p>Is reasonably comfortable using CLI apps.
+== User Stories</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Must-Have</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>As a user, I can add all the modules I have taken (module code,
+<strong>module title</strong>, MCs, grade, semester taken) so that I can calculate
+average mark I need to graduate with desired CAP.</p>
+</li>
+<li>
+<p>As a user I can delete modules so if I change my mind or fail a
+module I can re-calculate my average.</p>
+</li>
+<li>
+<p>As a user I can delete modules so that if i entered a wrong module
+or failed it, I can remove it.</p>
+</li>
+<li>
+<p>As a user I can edit the marks I’ve entered previously so that I can
+update my CAP.</p>
+</li>
+<li>
+<p>As a user, I can enter a CAP goal so that I can keep track of the
+progress of my course</p>
+</li>
+<li>
+<p>As a user, I can calculate the average mark I need across the
+modules I’ve entered so I can see what mark I need for each module to
+achieve my CAP goal.<br></p>
+</li>
+<li>
+<p>As a user, I can enter in predicted grades for modules so I can see
+what CAP I would get if I got these grades in my modules.</p>
+</li>
+<li>
+<p>As a user, I can close the app and return to modify my entries so I
+can enter my entries incrementally.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Nice-To-Have</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>As a user, I can add a module without having to add the code, MCs, or semester taken so that I can quickly calculate CAP without worrying about the modules.</p>
+</li>
+<li>
+<p>As a user, I can still enter the same modules but get warned first so that I would not mistakenly enter the same module again</p>
+</li>
+<li>
+<p>As a user, I can import all modules for this semester with NUSMods link so that my data can be consistent with NUSMods.</p>
+</li>
+<li>
+<p>As a user I can search for a module via keyword or module title, and select it for entering my grade so that I don’t have to remember the module code.</p>
+</li>
+<li>
+<p>As a user, I can adjust what marks I need for each module to achieve my CAP so I can put more emphasis on certain modules instead of expecting the same grade across all modules.</p>
+</li>
+<li>
+<p>As a user, I can view my current semester’s module goals and use a GUI to adjust projected grade for each module, and other modules will automatically adjust to compensate, so that I can see easily modify my data to see what grades I need for other modules.</p>
+</li>
+<li>
+<p>As a user, I can view total current MCs so that i can check if I meet the number of mc I need to graduate</p>
+</li>
+<li>
+<p>As a user I can see if my CAP Goal is possible so I can check whether it is achievable.</p>
+</li>
+<li>
+<p>As a user, I can list modules taken by level as an alternative listing mode, so that it is easier to track graduation requirements.</p>
+</li>
+<li>
+<p>As a user, I can see what the highest possible CAP I can achieve with my current grades is so that I can set an appropriate goal.</p>
+</li>
+<li>
+<p>As a user, I can see what the minimum grades I need per module is to pass the year with my current grades so that I can see what the minimum about of work I need to do is.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Not-Useful</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>As a user, I can view the module descriptions so that I know what modules I should take</p>
+</li>
+<li>
+<p>As a user I can enter the MCs for exchange I can keep track of modules that may not be mapped to our database of modules codes or isn’t the default number of MCs.</p>
+</li>
+<li>
+<p>As a user, I can export my timetable so that I can share it with my friend.</p>
+</li>
+</ol>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 13:38:15 UTC</div></div></div></body></html>
