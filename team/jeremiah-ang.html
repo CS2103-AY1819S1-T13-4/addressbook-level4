@@ -123,10 +123,10 @@ in the transcript and updated on the UI.</p>
 <h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="setting-cap-goal-code-c_goal-code"><a class="link" href="#setting-cap-goal-code-c_goal-code">Setting Cap Goal : <code>c_goal</code></a></h3>
+<h3 id="setting-cap-goal-code-goal-code"><a class="link" href="#setting-cap-goal-code-goal-code">Setting Cap Goal : <code>goal</code></a></h3>
 <div class="paragraph">
 <p>Set the CAP goal you want to achieve.<br>
-Format: <code>c_goal CAP_GOAL</code></p>
+Format: <code>goal CAP_GOAL</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -145,11 +145,25 @@ Format: <code>c_goal CAP_GOAL</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>c_goal 4.5</code><br>
-Update your CAP goal to 4.5
-=== Adjusting target goals: <code>c_adjust</code></p>
+<p><code>goal 4.5</code><br>
+Update your CAP goal to 4.5</p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adjusting-target-goals-code-adjust-code"><a class="link" href="#adjusting-target-goals-code-adjust-code">Adjusting target goals: <code>adjust</code></a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Removal of adjustment will be made available in the following release. For now, delete and add the module without a grade again.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Adjust the grade of an incomplete module<br>
@@ -158,10 +172,10 @@ Format:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Module code is unique: <code>c_adjust MODULE_CODE GRADE</code></p>
+<p><strong>Module code is unique</strong>: <code>adjust MODULE_CODE GRADE</code></p>
 </li>
 <li>
-<p>Otherwise: <code>c_adjust MODULE_CODE YEAR SEM GRADE</code></p>
+<p><strong>Otherwise</strong>: <code>adjust MODULE_CODE YEAR SEM GRADE</code></p>
 </li>
 </ul>
 </div>
@@ -171,11 +185,11 @@ Format:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>c_adjust CS2103 A</code><br>
+<p><code>adjust CS2103 A</code><br>
 Adjusts the grade with module code CS2103 to have grade A</p>
 </li>
 <li>
-<p><code>c_adjust CS2103 1 1 A</code><br>
+<p><code>adjust CS2103 1 1 A</code><br>
 Adjusts the grade with module code CS2103 taken in year 1 sem 1 to have grade A</p>
 </li>
 </ul>
@@ -507,6 +521,19 @@ for every incomplete Module m:
 </div>
 <div class="sect2">
 <h3 id="cap-calculation"><a class="link" href="#cap-calculation">CAP Calculation</a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To further test the <strong>Correctness</strong> of CAP Calculation you can input your own combination of modules and verify it with
+<a href="https://gradecalc.info/sg/nus/cumulative_gpa_calc.pl">This URL</a>
+</td>
+</tr>
+</table>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -518,9 +545,16 @@ for every incomplete Module m:
 </li>
 <li>
 <p>Delete any Completed Modules already added</p>
-<div class="paragraph">
-<p><strong>Expected</strong>: Current CAP should be 0</p>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: Current CAP should be 0</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
@@ -535,40 +569,78 @@ for every incomplete Module m:
 <ol class="lowerroman" type="i">
 <li>
 <p>Add a module(4MC, Grade B+) with the following command<br>
-<code>c_add CS1010 1 1 4 B+</code></p>
+<code>add -m CS1010 -y 1 -s 1 -c 4 -g B+</code></p>
 </li>
 <li>
 <p>Observe the current CAP</p>
-<div class="paragraph">
-<p><strong>Expected</strong>: Current CAP should be 4.0</p>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: Current CAP should be 4.0</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>CAP score of 3 Module</p>
+<p>CAP score of 4 Module</p>
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
 <li>
 <p>Add another module(4MC, Grade A-) with the following command<br>
-<code>c_add CS1020 1 2 4 A-</code></p>
+<code>add -m CS1020 -y 1 -s 2 -c 4 -g A-</code></p>
 </li>
 <li>
 <p>Observe the current CAP</p>
-<div class="paragraph">
-<p><strong>Expected</strong>: Current CAP should be 4.25</p>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: Current CAP should be 4.25</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 <li>
 <p>Add another module(5MC, Grade C+) with the following command<br>
-<code>c_add CS2010 2 1 5 C+</code></p>
+<code>add -m CS2010 -y 2 -s 1 -c 5 -g C+</code></p>
 </li>
 <li>
 <p>Observe the current CAP</p>
-<div class="paragraph">
-<p><strong>Expected</strong>: Current CAP should be 3.58</p>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: Current CAP should be 3.58</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Add another module(5MC, Grade CS) with the following command<br>
+<code>add -m CS2020 -y 2 -s 1 -c 5 -g CS</code></p>
+</li>
+<li>
+<p>Observe the current CAP</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: Current CAP should be 3.58</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
@@ -581,14 +653,38 @@ for every incomplete Module m:
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Edit one of the module with the following command<br>
-<code>c_edit TBC</code></p>
+<p>Edit one of the CS module with the following command<br>
+<code>edit -t CS2020 -g B+</code></p>
 </li>
 <li>
 <p>Observe the current CAP</p>
-<div class="paragraph">
-<p><strong>Expected</strong>: Current CAP should be TBC</p>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: Current CAP should be 3.69</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Edit one of the 5MC module with the following command<br>
+<code>edit -t CS2010 -c 4</code></p>
+</li>
+<li>
+<p>Observe the current CAP</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: Current CAP should be 3.76</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
@@ -599,13 +695,37 @@ for every incomplete Module m:
 <ol class="loweralpha" type="a">
 <li>
 <p>Delete one of the module with the following command<br>
-<code>c_delete CS1020</code></p>
+<code>delete -t CS2020</code></p>
 </li>
 <li>
 <p>Observe the current CAP</p>
-<div class="paragraph">
-<p><strong>Expected</strong>: Current CAP should be 3.17</p>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: Current CAP should be 3.67</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Delete another one of the module with the following command<br>
+<code>delete -t CS1020</code></p>
+</li>
+<li>
+<p>Observe the current CAP</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: Current CAP should be 3.25</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
@@ -625,9 +745,23 @@ for every incomplete Module m:
 <em>To follow this guide, ensure the there are only the following 2 modules:</em><br>
 Completed Modules:
 CS1010 year 1 sem 1 credits 4 grade B+<br>
-   <code>c_add cs1010 1 1 4 B+</code><br>
-CS1020 year 1 sem 2 credits 4 grade C+<br>
-   <code>c_add cs2010 1 2 4 C+</code>
+   <code>add -m cs1010 -y 1 -s 1 -c 4 -g B+</code><br>
+CS1020 year 2 sem 1 credits 4 grade C+<br>
+   <code>add -m cs2010 -y 2 -s 1 -c 4 -g C+</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can also further verify that the given target grades together with the adjusted grades
+and completed grades indeed provide a CAP greater to or equal to your CAP Goal if it is possible
+with <a href="https://gradecalc.info/sg/nus/cumulative_gpa_calc.pl">This URL</a>
 </td>
 </tr>
 </table>
@@ -640,15 +774,22 @@ CS1020 year 1 sem 2 credits 4 grade C+<br>
 <ol class="loweralpha" type="a">
 <li>
 <p>Remove any CAP Goal with the following command<br>
-<code>c_goal 0</code></p>
+<code>goal 0</code></p>
 </li>
 <li>
 <p>Add 2 incomplete module with the following command (One after another)<br>
-<code>c_add CS4234 4 1 4</code><br>
-<code>c_add CS4226 4 1 4</code></p>
-<div class="paragraph">
-<p><strong>Expected</strong>: Both module should have grade NIL</p>
-</div>
+<code>add -m CS4234 -y 4 -s 1 -c 4</code><br>
+<code>add -m CS4226 -y 4 -s 1 -c 4</code></p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: Both module should have grade NIL</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
@@ -659,11 +800,20 @@ CS1020 year 1 sem 2 credits 4 grade C+<br>
 <ol class="loweralpha" type="a">
 <li>
 <p>Add an impossible CAP Goal with the following command<br>
-<code>c_goal 5.0</code></p>
+<code>goal 5.0</code></p>
 </li>
 <li>
-<p>Observe the CAP Goal field
-<strong>Expected</strong>: CAP Goal should be <code>5.0 (Impossible)</code> and both modules should still have grade NIL</p>
+<p>Observe the CAP Goal field</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: CAP Goal should be <code>5.0 (Impossible)</code> and both modules should still have grade NIL</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
@@ -674,11 +824,44 @@ CS1020 year 1 sem 2 credits 4 grade C+<br>
 <ol class="loweralpha" type="a">
 <li>
 <p>Change the CAP Goal to something achievable with the following command<br>
-<code>c_goal 4.0</code></p>
+<code>goal 4.0</code></p>
 </li>
 <li>
-<p>Observe the Target Grades of CS4234 and CS4226
-<strong>Expected</strong>: CS4234 &#8594; <code>A</code> CS4226 &#8594; <code>A-</code></p>
+<p>Observe the Target Grades of CS4234 and CS4226</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: CS4234 &#8594; <code>A</code> CS4226 &#8594; <code>A-</code></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Target Grade should update upon entering an unachievable CAP Goal</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Change the CAP Goal to something achievable with the following command<br>
+<code>goal 5.0</code></p>
+</li>
+<li>
+<p>Observe the Target Grades of CS4234 and CS4226</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: both modules should have grade NIL</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
@@ -692,12 +875,25 @@ CS1020 year 1 sem 2 credits 4 grade C+<br>
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
 <li>
-<p>Add a module with good grade with the following command:<br>
-<code>c_add CS2100 1 2 4 A</code></p>
+<p>Set a goal to something achievable with the following command<br>
+<code>goal 4.0</code></p>
 </li>
 <li>
-<p>Observe that the Target Grades of CS4234 and CS4226 have dropped
-<strong>Expected</strong>: CS4234 &#8594; <code>A-</code> CS4226 &#8594; <code>B+</code></p>
+<p>Add a module with good grade with the following command:<br>
+<code>add -m CS2100 -y 1 -s 2 -c 4 -g A</code></p>
+</li>
+<li>
+<p>Observe that the Target Grades of CS4234 and CS4226 have dropped</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: CS4234 &#8594; <code>A-</code> CS4226 &#8594; <code>B+</code></p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
@@ -707,12 +903,21 @@ CS1020 year 1 sem 2 credits 4 grade C+<br>
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
 <li>
-<p>Add a module with good grade with the following command:<br>
-<code>c_add CS2105 2 1 4 C+</code></p>
+<p>Add a module with bad grade with the following command:<br>
+<code>add -m CS2105 -y 2 -s 1 -c 4 -g C+</code></p>
 </li>
 <li>
-<p>Observe that the Target Grades of CS4234 and CS4226 have increased
-<strong>Expected</strong>: CS4234 &#8594; <code>A</code> CS4226 &#8594; <code>A</code></p>
+<p>Observe that the Target Grades of CS4234 and CS4226 have increased</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: CS4234 &#8594; <code>A</code> CS4226 &#8594; <code>A</code></p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
@@ -722,12 +927,21 @@ CS1020 year 1 sem 2 credits 4 grade C+<br>
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
 <li>
-<p>Add a incomplete module with the following command:<br>
-<code>c_add CS4231 4 2 4</code></p>
+<p>Add another incomplete module with the following command:<br>
+<code>add -m CS4231 -y 4 -s 2 -c 4</code></p>
 </li>
 <li>
-<p>Observe that the Target Grades of CS4234 and CS4226 have dropped
-<strong>Expected</strong>: CS4234 &#8594; <code>A</code> CS4226 &#8594; <code>A-</code> CS4231 &#8594; <code>A-</code></p>
+<p>Observe that the Target Grades of CS4234 and CS4226 have dropped</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: CS4234 &#8594; <code>A</code> CS4226 &#8594; <code>A-</code> CS4231 &#8594; <code>A-</code></p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
@@ -740,16 +954,25 @@ CS1020 year 1 sem 2 credits 4 grade C+<br>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Increase a target grade should reduce another</p>
+<p>Increasing a target grade should reduce another</p>
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
 <li>
 <p>Adjust CS4226 with the following command<br>
-<code>c_adjust cs4226 A</code></p>
+<code>adjust cs4226 A</code></p>
 </li>
 <li>
-<p>Observe the Target Grade of CS4234
-<strong>Expected</strong>: CS4234 &#8594; <code>A-</code></p>
+<p>Observe the Target Grade of CS4234</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: CS4234 &#8594; <code>A-</code> CS4231 &#8594; <code>A-</code></p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
@@ -760,11 +983,20 @@ CS1020 year 1 sem 2 credits 4 grade C+<br>
 <ol class="lowerroman" type="i">
 <li>
 <p>Adjust CS4226 with the following command<br>
-<code>c_adjust cs4226 A-</code></p>
+<code>adjust cs4226 A-</code></p>
 </li>
 <li>
-<p>Observe the Target Grade of CS4234
-<strong>Expected</strong>: CS4234 &#8594; <code>A</code></p>
+<p>Observe the Target Grade of CS4234</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: CS4234 &#8594; <code>A</code> CS4231 &#8594; <code>A-</code></p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
@@ -775,11 +1007,20 @@ CS1020 year 1 sem 2 credits 4 grade C+<br>
 <ol class="lowerroman" type="i">
 <li>
 <p>Adjust CS4226 with the following command<br>
-<code>c_adjust cs4226 C+</code></p>
+<code>adjust cs4226 C+</code></p>
 </li>
 <li>
-<p>Observe the CAP Goal field
-<strong>Expected</strong>: CAP Goal should be <code>4.0 (Impossible)</code></p>
+<p>Observe the CAP Goal field</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: CAP Goal should be <code>4.0 (Impossible)</code> CS4234 &#8594; <code>NIL</code> CS4231 &#8594; <code>NIL</code></p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
@@ -788,26 +1029,46 @@ CS1020 year 1 sem 2 credits 4 grade C+<br>
 </div>
 </li>
 <li>
-<p>Adjusting multiple modules</p>
+<p>Adjusting multiple modules<br></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
 <p>Adjusting all modules to grades above what was target will be ok
-<code>c_adjust cs4226 A</code><br>
-<code>c_adjust cs4234 A</code></p>
+<code>adjust cs4226 A</code><br>
+<code>adjust cs4234 A</code><br>
+<code>adjust cs4231 A</code></p>
 </li>
 <li>
-<p>Observe the CAP Goal field
-<strong>Expected</strong>: CAP Goal should still be 4.0</p>
+<p>Observe the CAP Goal field</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: CAP Goal should still be 4.0</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 <li>
 <p>Adjusting all modules to grades below what was target will result in impossible CAP Goal
 <code>c_adjust cs4226 A-</code><br>
-<code>c_adjust cs4234 A-</code></p>
+<code>c_adjust cs4234 A-</code><br>
+<code>c_adjust cs4231 A-</code></p>
 </li>
 <li>
-<p>Observe the CAP Goal field
-<strong>Expected</strong>: CAP Goal should be <code>4.0 (Impossible)</code></p>
+<p>Observe the CAP Goal field</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expected</strong>: CAP Goal should be <code>4.0 (Impossible)</code></p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 </div>
@@ -816,4 +1077,4 @@ CS1020 year 1 sem 2 credits 4 grade C+<br>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 09:25:44 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 09:31:09 UTC</div></div></div></body></html>

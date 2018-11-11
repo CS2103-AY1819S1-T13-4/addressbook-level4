@@ -17,11 +17,11 @@
 <li><a href="#adding-a-module-code-c_add-code">3.2. Adding a module: <code>c_add</code></a></li>
 <li><a href="#editing-a-module-code-c_edit-code">3.3. Editing a module : <code>c_edit</code></a></li>
 <li><a href="#deleting-a-module-code-c_delete-code">3.4. Deleting a module : <code>c_delete</code></a></li>
-<li><a href="#setting-cap-goal-code-c_goal-code">3.5. Setting Cap Goal : <code>c_goal</code></a></li>
-<li><a href="#undoing-commands-code-c_undo-code">3.6. Undoing commands : <code>c_undo</code></a></li>
-<li><a href="#redoing-commands-code-c_redo-code">3.7. Redoing commands : <code>c_redo</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.8. Exiting the program : <code>exit</code></a></li>
-<li><a href="#adjusting-target-goals-code-c_adjust-code">3.9. Adjusting target goals: <code>c_adjust</code></a></li>
+<li><a href="#setting-cap-goal-code-goal-code">3.5. Setting Cap Goal : <code>goal</code></a></li>
+<li><a href="#adjusting-target-goals-code-adjust-code">3.6. Adjusting target goals: <code>adjust</code></a></li>
+<li><a href="#undoing-commands-code-c_undo-code">3.7. Undoing commands : <code>c_undo</code></a></li>
+<li><a href="#redoing-commands-code-c_redo-code">3.8. Redoing commands : <code>c_redo</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.9. Exiting the program : <code>exit</code></a></li>
 <li><a href="#saving-the-data">3.10. Saving the data</a></li>
 <li><a href="#understanding-the-user-interface">3.11. Understanding the User Interface</a></li>
 </ul>
@@ -365,10 +365,10 @@ retaken and cap tracker has multiple entries of it.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-cap-goal-code-c_goal-code"><a class="link" href="#setting-cap-goal-code-c_goal-code">3.5. Setting Cap Goal : <code>c_goal</code></a></h3>
+<h3 id="setting-cap-goal-code-goal-code"><a class="link" href="#setting-cap-goal-code-goal-code">3.5. Setting Cap Goal : <code>goal</code></a></h3>
 <div class="paragraph">
 <p>Set the CAP goal you want to achieve.<br>
-Format: <code>c_goal CAP_GOAL</code></p>
+Format: <code>goal CAP_GOAL</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -387,35 +387,26 @@ Format: <code>c_goal CAP_GOAL</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>c_goal 4.5</code><br>
+<p><code>goal 4.5</code><br>
 Update your CAP goal to 4.5</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-commands-code-c_undo-code"><a class="link" href="#undoing-commands-code-c_undo-code">3.6. Undoing commands : <code>c_undo</code></a></h3>
-<div class="paragraph">
-<p>Reverts changes made by the last command given.<br>
-Format: <code>c_undo</code></p>
+<h3 id="adjusting-target-goals-code-adjust-code"><a class="link" href="#adjusting-target-goals-code-adjust-code">3.6. Adjusting target goals: <code>adjust</code></a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Removal of adjustment will be made available in the following release. For now, delete and add the module without a grade again.
+</td>
+</tr>
+</table>
 </div>
-</div>
-<div class="sect2">
-<h3 id="redoing-commands-code-c_redo-code"><a class="link" href="#redoing-commands-code-c_redo-code">3.7. Redoing commands : <code>c_redo</code></a></h3>
-<div class="paragraph">
-<p>Reverts changes made by the undo command.<br>
-Format: <code>c_redo</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.8. Exiting the program : <code>exit</code></a></h3>
-<div class="paragraph">
-<p>Exits the program.<br>
-Format: <code>exit</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adjusting-target-goals-code-c_adjust-code"><a class="link" href="#adjusting-target-goals-code-c_adjust-code">3.9. Adjusting target goals: <code>c_adjust</code></a></h3>
 <div class="paragraph">
 <p>Adjust the grade of an incomplete module<br>
 Format:</p>
@@ -423,10 +414,10 @@ Format:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Module code is unique: <code>c_adjust MODULE_CODE GRADE</code></p>
+<p><strong>Module code is unique</strong>: <code>adjust MODULE_CODE GRADE</code></p>
 </li>
 <li>
-<p>Otherwise: <code>c_adjust MODULE_CODE YEAR SEM GRADE</code></p>
+<p><strong>Otherwise</strong>: <code>adjust MODULE_CODE YEAR SEM GRADE</code></p>
 </li>
 </ul>
 </div>
@@ -436,14 +427,35 @@ Format:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>c_adjust CS2103 A</code><br>
+<p><code>adjust CS2103 A</code><br>
 Adjusts the grade with module code CS2103 to have grade A</p>
 </li>
 <li>
-<p><code>c_adjust CS2103 1 1 A</code><br>
+<p><code>adjust CS2103 1 1 A</code><br>
 Adjusts the grade with module code CS2103 taken in year 1 sem 1 to have grade A</p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undoing-commands-code-c_undo-code"><a class="link" href="#undoing-commands-code-c_undo-code">3.7. Undoing commands : <code>c_undo</code></a></h3>
+<div class="paragraph">
+<p>Reverts changes made by the last command given.<br>
+Format: <code>c_undo</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="redoing-commands-code-c_redo-code"><a class="link" href="#redoing-commands-code-c_redo-code">3.8. Redoing commands : <code>c_redo</code></a></h3>
+<div class="paragraph">
+<p>Reverts changes made by the undo command.<br>
+Format: <code>c_redo</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.9. Exiting the program : <code>exit</code></a></h3>
+<div class="paragraph">
+<p>Exits the program.<br>
+Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
@@ -542,4 +554,4 @@ e.g. <code>c_adjust CS2103 1 1 A</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 09:25:44 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 09:31:09 UTC</div></div></div></body></html>
