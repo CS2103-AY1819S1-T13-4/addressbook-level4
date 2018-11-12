@@ -26,36 +26,41 @@
 <li><a href="#Design-Model">2.5. Model component</a></li>
 <li><a href="#Design-Storage">2.6. Storage component</a></li>
 <li><a href="#Design-Commons">2.7. Common classes</a></li>
-<li><a href="#cap-target-grades-calculation">2.8. CAP &amp; Target Grades Calculation</a></li>
-<li><a href="#logging">2.9. Logging</a></li>
-<li><a href="#Implementation-Configuration">2.10. Configuration</a></li>
 </ul>
 </li>
-<li><a href="#documentation">3. Documentation</a>
+<li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#editing-documentation">3.1. Editing Documentation</a></li>
-<li><a href="#publishing-documentation">3.2. Publishing Documentation</a></li>
-<li><a href="#converting-documentation-to-pdf-format">3.3. Converting Documentation to PDF format</a></li>
-<li><a href="#Docs-SiteWideDocSettings">3.4. Site-wide Documentation Settings</a></li>
-<li><a href="#Docs-PerFileDocSettings">3.5. Per-file Documentation Settings</a></li>
-<li><a href="#site-template">3.6. Site Template</a></li>
+<li><a href="#cap-target-grades-calculation">3.1. CAP &amp; Target Grades Calculation</a></li>
+<li><a href="#transcript-storage-reading-and-writing">3.2. Transcript Storage: Reading and Writing</a></li>
+<li><a href="#logging">3.3. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
 </ul>
 </li>
-<li><a href="#Testing">4. Testing</a>
+<li><a href="#documentation">4. Documentation</a>
 <ul class="sectlevel2">
-<li><a href="#running-tests">4.1. Running Tests</a></li>
-<li><a href="#types-of-tests">4.2. Types of tests</a></li>
-<li><a href="#troubleshooting-testing">4.3. Troubleshooting Testing</a></li>
+<li><a href="#editing-documentation">4.1. Editing Documentation</a></li>
+<li><a href="#publishing-documentation">4.2. Publishing Documentation</a></li>
+<li><a href="#converting-documentation-to-pdf-format">4.3. Converting Documentation to PDF format</a></li>
+<li><a href="#Docs-SiteWideDocSettings">4.4. Site-wide Documentation Settings</a></li>
+<li><a href="#Docs-PerFileDocSettings">4.5. Per-file Documentation Settings</a></li>
+<li><a href="#site-template">4.6. Site Template</a></li>
 </ul>
 </li>
-<li><a href="#dev-ops">5. Dev Ops</a>
+<li><a href="#Testing">5. Testing</a>
 <ul class="sectlevel2">
-<li><a href="#build-automation">5.1. Build Automation</a></li>
-<li><a href="#continuous-integration">5.2. Continuous Integration</a></li>
-<li><a href="#coverage-reporting">5.3. Coverage Reporting</a></li>
-<li><a href="#documentation-previews">5.4. Documentation Previews</a></li>
-<li><a href="#making-a-release">5.5. Making a Release</a></li>
-<li><a href="#managing-dependencies">5.6. Managing Dependencies</a></li>
+<li><a href="#running-tests">5.1. Running Tests</a></li>
+<li><a href="#types-of-tests">5.2. Types of tests</a></li>
+<li><a href="#troubleshooting-testing">5.3. Troubleshooting Testing</a></li>
+</ul>
+</li>
+<li><a href="#dev-ops">6. Dev Ops</a>
+<ul class="sectlevel2">
+<li><a href="#build-automation">6.1. Build Automation</a></li>
+<li><a href="#continuous-integration">6.2. Continuous Integration</a></li>
+<li><a href="#coverage-reporting">6.3. Coverage Reporting</a></li>
+<li><a href="#documentation-previews">6.4. Documentation Previews</a></li>
+<li><a href="#making-a-release">6.5. Making a Release</a></li>
+<li><a href="#managing-dependencies">6.6. Managing Dependencies</a></li>
 </ul>
 </li>
 <li><a href="#GetStartedProgramming">Appendix A: Target User Profile</a></li>
@@ -595,34 +600,38 @@ for the box, a scroll down option becomes available for the user to continue rea
 <p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-T13-4/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Storage</code> component,</p>
+<p>The <code>Storage</code> interface defines a component which</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+<p>can save <code>UserPref</code> objects in JSON format and read it back.</p>
 </li>
 <li>
-<p>can save Transcript data in json format and read it back.</p>
-</li>
-<li>
-<p><code>ReadOnlyTranscript</code> uses custom <code>JsonTranscriptDeserializer</code> to enable <code>JsonUtil.readJsonFile</code> to deserialize a <code>json</code> file into a <code>ReadOnlyTranscript</code>.</p>
+<p>can save Transcript data in JSON format and read it back.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>The <code>StorageManager</code> implements the <code>Storage</code> interface, and updates the transcript JSON file when the <code>TranscriptChangedEvent</code> is fired (see Figure 4). It also logs the reading and saving of transcript data.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.7. Common classes</a></h3>
 <div class="paragraph">
-<p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.
-== Implementation</p>
+<p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation"><a class="link" href="#implementation">3. Implementation</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
-</div>
 <div class="sect2">
-<h3 id="cap-target-grades-calculation"><a class="link" href="#cap-target-grades-calculation">2.8. CAP &amp; Target Grades Calculation</a></h3>
+<h3 id="cap-target-grades-calculation"><a class="link" href="#cap-target-grades-calculation">3.1. CAP &amp; Target Grades Calculation</a></h3>
 <div class="paragraph">
 <p>The two calculations are triggered upon an change to the list of modules in <code>Transcript</code> <em>i.e. add/update/delete</em>.</p>
 </div>
@@ -633,7 +642,7 @@ for the box, a scroll down option becomes available for the user to continue rea
 <div class="title">Figure 10. Sequence Diagram of updating modules in Transcript</div>
 </div>
 <div class="sect3">
-<h4 id="Implementation-CAP"><a class="link" href="#Implementation-CAP">2.8.1. CAP Calculation</a></h4>
+<h4 id="Implementation-CAP"><a class="link" href="#Implementation-CAP">3.1.1. CAP Calculation</a></h4>
 <div class="paragraph">
 <p>The CAP calculation is handled by <code>Transcript</code>.</p>
 </div>
@@ -659,7 +668,7 @@ CAP &lt;- all_points/all_credits</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="Implementation-TargetGrades"><a class="link" href="#Implementation-TargetGrades">2.8.2. Target Grades Calculation</a></h4>
+<h4 id="Implementation-TargetGrades"><a class="link" href="#Implementation-TargetGrades">3.1.2. Target Grades Calculation</a></h4>
 <div class="paragraph">
 <p>The target <code>Grade</code> calculation is facilitated by <code>Transcript</code>.
 The returned list of modules with target <code>Grade</code> assures the following properties:</p>
@@ -726,14 +735,28 @@ in the process of creating a new Module with updated target grade</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">2.9. Logging</a></h3>
+<h3 id="transcript-storage-reading-and-writing"><a class="link" href="#transcript-storage-reading-and-writing">3.2. Transcript Storage: Reading and Writing</a></h3>
+<div class="paragraph">
+<p>Whenever the in-memory <code>Transcript</code> object is changed, the transcript data file is updated. When the app initializes, it will look for an existing data file from which to load the transcript.+
+If the file is not found, the app will initialize with an empty Transcript.+
+If the file is found but the data is an incorrect format or there is some problem reading from the file, the app will initialize with an empty Transcript as well.+</p>
+</div>
+<div class="paragraph">
+<p>When the app initializes, it looks for the file name provided by <code>data/preferences.json</code> under the <code>transcriptFilePath</code> key - by default this is <code>data/transcript_demo.json</code>. This file stores all transcript data including modules data and cap Goal information, such as its value, whether it is set, and whether it is impossible. The <code>transcriptFilePath</code> may be changed manually by the user.+</p>
+</div>
+<div class="paragraph">
+<p>By using the <code>Jackson</code> library to store the Transcript data as a JSON file instead of an XML file, we avoid having to write <code>XMLSerializableTranscript</code> and <code>XMLAdaptedModule</code> classes. Instead, we simply register a custom <code>JSONTranscriptDeserializer</code> on the <code>ReadOnlyTranscript</code> class so that when we read from the JSON file, Jackson&#8217;s <code>ObjectMapper</code> is able to use the values to reconstruct the saved object.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 2.10, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -764,7 +787,7 @@ in the process of creating a new Module with updated target grade</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">2.10. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -772,7 +795,7 @@ in the process of creating a new Module with updated target grade</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="documentation"><a class="link" href="#documentation">3. Documentation</a></h2>
+<h2 id="documentation"><a class="link" href="#documentation">4. Documentation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We use asciidoc for writing documentation.</p>
@@ -790,20 +813,20 @@ We chose asciidoc over Markdown because asciidoc, although a bit more complex th
 </table>
 </div>
 <div class="sect2">
-<h3 id="editing-documentation"><a class="link" href="#editing-documentation">3.1. Editing Documentation</a></h3>
+<h3 id="editing-documentation"><a class="link" href="#editing-documentation">4.1. Editing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html#rendering-asciidoc-files">UsingGradle.adoc</a> to learn how to render <code>.adoc</code> files locally to preview the end result of your edits.
 Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your <code>.adoc</code> files in real-time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">3.2. Publishing Documentation</a></h3>
+<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">4.2. Publishing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingTravis.html#deploying-github-pages">UsingTravis.adoc</a> to learn how to deploy GitHub Pages using Travis.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">3.3. Converting Documentation to PDF format</a></h3>
+<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">4.3. Converting Documentation to PDF format</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://www.google.com/chrome/browser/desktop/">Google Chrome</a> for converting documentation to PDF format, as Chrome&#8217;s PDF engine preserves hyperlinks used in webpages.</p>
 </div>
@@ -834,7 +857,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 </div>
 </div>
 <div class="sect2">
-<h3 id="Docs-SiteWideDocSettings"><a class="link" href="#Docs-SiteWideDocSettings">3.4. Site-wide Documentation Settings</a></h3>
+<h3 id="Docs-SiteWideDocSettings"><a class="link" href="#Docs-SiteWideDocSettings">4.4. Site-wide Documentation Settings</a></h3>
 <div class="paragraph">
 <p>The <a href="https://github.com/CS2103-AY1819S1-T13-4/main/tree/master/build.gradle"><code>build.gradle</code></a> file specifies some project-specific <a href="https://asciidoctor.org/docs/user-manual/#attributes">asciidoc attributes</a> which affects how all documentation files within this project are rendered.</p>
 </div>
@@ -893,7 +916,7 @@ This will render the SE-EDU navigation bar at the top of the page, and add some 
 </table>
 </div>
 <div class="sect2">
-<h3 id="Docs-PerFileDocSettings"><a class="link" href="#Docs-PerFileDocSettings">3.5. Per-file Documentation Settings</a></h3>
+<h3 id="Docs-PerFileDocSettings"><a class="link" href="#Docs-PerFileDocSettings">4.5. Per-file Documentation Settings</a></h3>
 <div class="paragraph">
 <p>Each <code>.adoc</code> file may also specify some file-specific <a href="https://asciidoctor.org/docs/user-manual/#attributes">asciidoc attributes</a> which affects how the file is rendered.</p>
 </div>
@@ -950,7 +973,7 @@ One of: <code>UserGuide</code>, <code>DeveloperGuide</code>, <code>LearningOutco
 </table>
 </div>
 <div class="sect2">
-<h3 id="site-template"><a class="link" href="#site-template">3.6. Site Template</a></h3>
+<h3 id="site-template"><a class="link" href="#site-template">4.6. Site Template</a></h3>
 <div class="paragraph">
 <p>The files in <a href="https://github.com/CS2103-AY1819S1-T13-4/main/tree/master/docs/stylesheets"><code>docs/stylesheets</code></a> are the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS stylesheets</a> of the site.
 You can modify them to change some properties of the site&#8217;s design.</p>
@@ -979,10 +1002,10 @@ The SE-EDU team does not provide support for modified template files.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="Testing"><a class="link" href="#Testing">4. Testing</a></h2>
+<h2 id="Testing"><a class="link" href="#Testing">5. Testing</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="running-tests"><a class="link" href="#running-tests">4.1. Running Tests</a></h3>
+<h3 id="running-tests"><a class="link" href="#running-tests">5.1. Running Tests</a></h3>
 <div class="paragraph">
 <p>There are three ways to run tests.</p>
 </div>
@@ -1044,7 +1067,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 </div>
 </div>
 <div class="sect2">
-<h3 id="types-of-tests"><a class="link" href="#types-of-tests">4.2. Types of tests</a></h3>
+<h3 id="types-of-tests"><a class="link" href="#types-of-tests">5.2. Types of tests</a></h3>
 <div class="paragraph">
 <p>We have two types of tests:</p>
 </div>
@@ -1086,7 +1109,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">4.3. Troubleshooting Testing</a></h3>
+<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">5.3. Troubleshooting Testing</a></h3>
 <div class="paragraph">
 <p><strong>Problem: <code>HelpWindowTest</code> fails with a <code>NullPointerException</code>.</strong></p>
 </div>
@@ -1104,34 +1127,34 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="dev-ops"><a class="link" href="#dev-ops">5. Dev Ops</a></h2>
+<h2 id="dev-ops"><a class="link" href="#dev-ops">6. Dev Ops</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="build-automation"><a class="link" href="#build-automation">5.1. Build Automation</a></h3>
+<h3 id="build-automation"><a class="link" href="#build-automation">6.1. Build Automation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html">UsingGradle.adoc</a> to learn how to use Gradle for build automation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="continuous-integration"><a class="link" href="#continuous-integration">5.2. Continuous Integration</a></h3>
+<h3 id="continuous-integration"><a class="link" href="#continuous-integration">6.2. Continuous Integration</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://travis-ci.org/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a> to perform <em>Continuous Integration</em> on our projects. See <a href="UsingTravis.html">UsingTravis.adoc</a> and <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="coverage-reporting"><a class="link" href="#coverage-reporting">5.3. Coverage Reporting</a></h3>
+<h3 id="coverage-reporting"><a class="link" href="#coverage-reporting">6.3. Coverage Reporting</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://coveralls.io/">Coveralls</a> to track the code coverage of our projects. See <a href="UsingCoveralls.html">UsingCoveralls.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="documentation-previews"><a class="link" href="#documentation-previews">5.4. Documentation Previews</a></h3>
+<h3 id="documentation-previews"><a class="link" href="#documentation-previews">6.4. Documentation Previews</a></h3>
 <div class="paragraph">
 <p>When a pull request has changes to asciidoc files, you can use <a href="https://www.netlify.com/">Netlify</a> to see a preview of how the HTML version of those asciidoc files will look like when the pull request is merged. See <a href="UsingNetlify.html">UsingNetlify.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="making-a-release"><a class="link" href="#making-a-release">5.5. Making a Release</a></h3>
+<h3 id="making-a-release"><a class="link" href="#making-a-release">6.5. Making a Release</a></h3>
 <div class="paragraph">
 <p>Here are the steps to create a new release.</p>
 </div>
@@ -1153,7 +1176,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">5.6. Managing Dependencies</a></h3>
+<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">6.6. Managing Dependencies</a></h3>
 <div class="paragraph">
 <p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
 a. Include those libraries in the repo (this bloats the repo size)<br>
@@ -1658,6 +1681,57 @@ Expected: Shows the GUI with a set of sample contacts. The window size may not b
 <li>
 <p>Re-launch the app by double-clicking the jar file.<br>
 Expected: The most recent window size and location is retained.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Saving transcript data</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add some modules, set a CAP goal, and close the app.</p>
+</li>
+<li>
+<p>Re-launch the app by double-clicking the jar file.<br>
+Expected: The added modules and CAP goal are retained.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Changing the transcript data file path</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add some modules, set a CAP goal, and close the app.</p>
+</li>
+<li>
+<p>Change the value of <code>transcriptFilePath</code> in the file <code>data/preferences.json</code> (found in the same directory as the jar file) to some non-existent file such as <code>data/transcript_test.json</code>.</p>
+</li>
+<li>
+<p>Re-launch the app by double-clicking the jar file.+
+Expected: The app will initialize with an empty transcript (no modules or CAP goal). On further change, the app will save the transcript data to the new file <code>data/transcript_test..json</code>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Importing transcript data</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add some modules, set a CAP goal, and close the app.</p>
+</li>
+<li>
+<p>Save another copy of the jar file in another directory and open and close this second app.</p>
+</li>
+<li>
+<p>Replace the <code>data/transcript.json</code> of the second app with the <code>data/transcript.json</code> from the first app.</p>
+</li>
+<li>
+<p>Relaunch the new app.<br>
+Expected: The app will initialize with the added modules and CAP goal from the first app.+</p>
 </li>
 </ol>
 </div>
@@ -2223,4 +2297,4 @@ with <a href="https://gradecalc.info/sg/nus/cumulative_gpa_calc.pl">This URL</a>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 03:35:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 03:46:17 UTC</div></div></div></body></html>

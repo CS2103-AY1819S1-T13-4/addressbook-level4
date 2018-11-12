@@ -13,15 +13,16 @@
 <li><a href="#quick-start">2. Quick Start</a></li>
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
-<li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-module-code-add-code">3.2. Adding a module: <code>add</code></a></li>
-<li><a href="#editing-a-module-code-edit-code">3.3. Editing a module : <code>edit</code></a></li>
-<li><a href="#deleting-a-module-code-delete-code">3.4. Deleting a module : <code>delete</code></a></li>
-<li><a href="#setting-cap-goal-code-goal-code">3.5. Setting Cap Goal : <code>goal</code></a></li>
-<li><a href="#adjusting-target-goals-code-adjust-code">3.6. Adjusting target goals: <code>adjust</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.7. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.8. Saving the data</a></li>
-<li><a href="#understanding-the-user-interface">3.9. Understanding the User Interface</a></li>
+<li><a href="#feature-overview">3.1. Feature overview</a></li>
+<li><a href="#viewing-help-code-help-code">3.2. Viewing help : <code>help</code></a></li>
+<li><a href="#adding-a-module-code-add-code">3.3. Adding a module: <code>add</code></a></li>
+<li><a href="#editing-a-module-code-edit-code">3.4. Editing a module : <code>edit</code></a></li>
+<li><a href="#deleting-a-module-code-delete-code">3.5. Deleting a module : <code>delete</code></a></li>
+<li><a href="#setting-cap-goal-code-goal-code">3.6. Setting Cap Goal : <code>goal</code></a></li>
+<li><a href="#adjusting-target-goals-code-adjust-code">3.7. Adjusting target goals: <code>adjust</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.8. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-your-module-data">3.9. Saving your module data</a></li>
+<li><a href="#understanding-the-user-interface">3.10. Understanding the User Interface</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -32,13 +33,9 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>CAPTracker is for students who wants to use a desktop app for calculating and
-managing their CAP (Cumulative Average Point). More importantly CAPTracker is
-<strong>optimized for those who prefer to work with a CLI (Command Line Interface)</strong>
-while still having the benefits of a Graphical User Interface (GUI). If you can
-type fast, CAPTracker is the ideal application for calculating your current CAP,
-and predicting grades needed to achieve your ideal CAP in modules that hasn&#8217;t
-been taken. Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>CAPTracker is a desktop app that allows NUS students to track their current CAP (Cumulative Average Point), set a CAP goal, and calculate target grades needed to achieve their goal.+
+CAPTracker is optimized for users who are familiar with CLI (Command Line Interface) for input control while still having the benefits of a Graphical User Interface (GUI) for displaying information.+
+If you can type fast, CAPTracker is the ideal application for monitoring your current CAP, and predicting grades needed to achieve your ideal CAP for modules that hasn&#8217;t been taken. Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 </div>
 </div>
@@ -79,6 +76,12 @@ e.g. Typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <code>4</code> MCs taken in Semester <code>1</code> as a Year <code>2</code> student.</p>
 </li>
 <li>
+<p><strong><code>goal 4.5</code></strong> : Sets a CAP goal of 4.5.</p>
+</li>
+<li>
+<p>**<code>delete -t CS2103 -e 2 -z 1</code> : Deletes <code>CS2103</code> taken in year <code>2</code> semester</p>
+</li>
+<li>
 <p><code>delete -t CS2103 -e 2 -z 1</code> : Deletes <code>CS2103</code> taken in year <code>2</code> semester
 <code>1</code> from CAPTracker.</p>
 </li>
@@ -98,6 +101,15 @@ e.g. Typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect1">
 <h2 id="Features"><a class="link" href="#Features">3. Features</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="feature-overview"><a class="link" href="#feature-overview">3.1. Feature overview</a></h3>
+<div class="paragraph">
+<p>In the CAPTracker app, you can add modules that you&#8217;ve completed and it will display your current CAP.  A module consists of a code, year, semester, number of credits, and an associated grade.<br>
+You may also add incomplete modules (i.e. modules that you are currently enrolled in, or plan to enroll in eventually, but you have not received your grade yet) simply by adding that module and omitting the grade.+
+You may also set a CAP goal, and the app will automatically generate the target grades necessary for your incomplete modules so that you can achieve your goal. The app will also let you know if your goal is too high based on the number of incomplete credits you have and your current CAP.<br>
+Lastly, you can also adjust the target grade of a particular incomplete module (for example, a module you know you can get an A in) and the app will automatically recalculate the required grades for the rest of the modules (so you can afford to score lower on those modules).<br>
+Happy tracking!</p>
+</div>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
@@ -121,14 +133,15 @@ e.g. <code>add -m MODULE_CODE -y YEAR -s SEMESTER -c CREDIT [-g GRADE]</code>:<b
 </div>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></h3>
+<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.2. Viewing help : <code>help</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>help</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-module-code-add-code"><a class="link" href="#adding-a-module-code-add-code">3.2. Adding a module: <code>add</code></a></h3>
+<h3 id="adding-a-module-code-add-code"><a class="link" href="#adding-a-module-code-add-code">3.3. Adding a module: <code>add</code></a></h3>
 <div class="paragraph">
 <p>Adds a <code><strong>particular</strong></code> module entry to the <em>CAPTracker</em>.</p>
 </div>
@@ -240,7 +253,7 @@ Adds a module with:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-module-code-edit-code"><a class="link" href="#editing-a-module-code-edit-code">3.3. Editing a module : <code>edit</code></a></h3>
+<h3 id="editing-a-module-code-edit-code"><a class="link" href="#editing-a-module-code-edit-code">3.4. Editing a module : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits fields of a <code><strong>particular</strong></code> module entry in the CAPTracker.</p>
 </div>
@@ -320,7 +333,7 @@ year, and semester
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-module-code-delete-code"><a class="link" href="#deleting-a-module-code-delete-code">3.4. Deleting a module : <code>delete</code></a></h3>
+<h3 id="deleting-a-module-code-delete-code"><a class="link" href="#deleting-a-module-code-delete-code">3.5. Deleting a module : <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Deletes a <code><strong>particular</strong></code> module entry in the CAPTracker.</p>
 </div>
@@ -383,7 +396,7 @@ if there exist multiple entries with the same module <code>TARGET_CODE</code>.
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-cap-goal-code-goal-code"><a class="link" href="#setting-cap-goal-code-goal-code">3.5. Setting Cap Goal : <code>goal</code></a></h3>
+<h3 id="setting-cap-goal-code-goal-code"><a class="link" href="#setting-cap-goal-code-goal-code">3.6. Setting Cap Goal : <code>goal</code></a></h3>
 <div class="paragraph">
 <p>Set the CAP goal you want to achieve.<br>
 Format: <code>goal CAP_GOAL</code></p>
@@ -412,7 +425,7 @@ Update your CAP goal to 4.5</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adjusting-target-goals-code-adjust-code"><a class="link" href="#adjusting-target-goals-code-adjust-code">3.6. Adjusting target goals: <code>adjust</code></a></h3>
+<h3 id="adjusting-target-goals-code-adjust-code"><a class="link" href="#adjusting-target-goals-code-adjust-code">3.7. Adjusting target goals: <code>adjust</code></a></h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -456,22 +469,23 @@ Adjusts the grade with module code CS2103 taken in year 1 sem 1 to have grade A<
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.7. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.8. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.8. Saving the data</a></h3>
+<h3 id="saving-your-module-data"><a class="link" href="#saving-your-module-data">3.9. Saving your module data</a></h3>
 <div class="paragraph">
-<p>CAPTracker data are saved in the hard disk automatically whenever there is a
-command that leads to change in the data.<br>
-There is no need to save manually.</p>
+<p>Your module information and CAP goal are automatically saved on the hard disk as a JSON file (by default <code>data/transcript.json</code>) whenever there are changes to the modules or CAP goal. The data is automatically loaded into the app again upon startup.+
+You may manually change the location to store your data by changing the value of <code>transcriptFilePath</code> in the file <code>data/preferences.json</code> (found in the same directory as the CapTracker jar file).<br>
+You may load your module data in the CAPTracker app on another computer or share it with other users if desired, simply by sharing the module data file generated by your instance of the app. The value of <code>transcriptFilePath</code> in the preferences file will have to be changed to the location of your own data file.
+Note: Do not modify the JSON module data file manually, or you may lose your data.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="understanding-the-user-interface"><a class="link" href="#understanding-the-user-interface">3.9. Understanding the User Interface</a></h3>
+<h3 id="understanding-the-user-interface"><a class="link" href="#understanding-the-user-interface">3.10. Understanding the User Interface</a></h3>
 <div class="paragraph">
 <p>Understanding the User Interface can be tricky - what do all the different colours mean? How do I
 know what has been saved or not? Where can I see new modules I&#8217;ve added?</p>
@@ -593,4 +607,4 @@ e.g. <code>adjust CS2103 1 1 A</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 03:35:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 03:46:17 UTC</div></div></div></body></html>

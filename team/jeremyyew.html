@@ -24,7 +24,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: Automatically saves and updates all of user&#8217;s transcript data into a file, and loads this file. File path for transcript data file can be changed in preferences file.</p>
+<p>What it does: Automatically saves and updates all of user&#8217;s transcript data into a file, and loads this file.</p>
 </li>
 <li>
 <p>Justification: Users should be able to access previously created modules when opening the app again, otherwise they would have to re-enter all their modules again. They can also load their data in another computer or share it with other users if desired, simply by sharing the file itself.</p>
@@ -34,19 +34,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Transcript data file is updated whenever the in-memory Transcript object is changed.</p>
-</li>
-<li>
-<p>By using the <code>Jackson</code> library to store the Transcript data as a JSON file instead of an XML file, we avoid having to write <code>XMLSerializableTranscript</code> and <code>XMLAdaptedModule</code> classes. Instead, we simply register a custom <code>JSONTranscriptDeserializer</code> on the <code>ReadOnlyTranscript</code> class so that when we read from the JSON file, Jackson&#8217;s <code>ObjectMapper</code> is able to use the values to reconstruct the saved object. This reduces code complexity.</p>
-</li>
-<li>
-<p><code>JSONTranscriptDeserializer</code> uses null-returning node access with <code>get</code> when a missing value signifies type-incorrectness and should raise an exception. It uses safe node access with <code>path</code> when the field may be missing but the object can be instantiated without it.</p>
+<p>By using the <code>Jackson</code> library to store the Transcript data as a JSON file instead of an XML file, we avoid having to write <code>XMLSerializableTranscript</code> and <code>XMLAdaptedModule</code> classes.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Credits: Relied on patterns in <code>Storage</code> classes in AB-4.</p>
 </li>
 </ul>
 </div>
@@ -59,7 +50,7 @@
 <p>What it does: Displays current CAP, immediately updates whenever completed modules are edited. Displays CAP Goal if set, else displays NIL; immediately updates whenever incomplete modules are changed or adjusted.</p>
 </li>
 <li>
-<p>Justification: Users should be able to view their current CAP and CAP Goal as they are updated, without having to request for them through a command. This enables them to easily evaluate their current academic standing, and set new academic goals.</p>
+<p>Justification: Users should be able to view their current CAP and CAP Goal as they are updated, without having to request for them through a command.</p>
 </li>
 </ul>
 </div>
@@ -81,9 +72,6 @@
 <li>
 <p>Managed release <code>v1.1</code> (1 release) on GitHub.</p>
 </li>
-<li>
-<p>Maintained issue tracker and review/merger of pull requests.</p>
-</li>
 </ul>
 </div>
 </li>
@@ -92,10 +80,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Enabled app to load initial sample module data (<a href="https://github.com/CS2103-AY1819S1-T13-4/main/pull/27">#27</a>).</p>
+<p>Enabled app to load initial sample module data (See PR #27).</p>
 </li>
 <li>
-<p>Coded initial GUI layout (<a href="https://github.com/CS2103-AY1819S1-T13-4/main/pull/52">#52</a>).</p>
+<p>Set up initial GUI layout (See PR #52).</p>
 </li>
 </ul>
 </div>
@@ -108,7 +96,7 @@
 <p>Updated existing content of the Storage Section of Developer Guide.</p>
 </li>
 <li>
-<p>Updated existing content of the "Saving your module data" section of User Guide, and helped refined other member&#8217;s documentation of commands.</p>
+<p>Added feature overview and updated "Saving your module data" section of User Guide.</p>
 </li>
 </ul>
 </div>
@@ -118,10 +106,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments):
-<a href="https://github.com/CS2103-AY1819S1-T13-4/main/pull/23">#23</a>,
-<a href="https://github.com/CS2103-AY1819S1-T13-4/main/pull/37">#37</a>,
-<a href="https://github.com/CS2103-AY1819S1-T13-4/main/pull/121">#121</a>,</p>
+<p>PRs reviewed (with non-trivial review comments): #23, #37, #121</p>
 </li>
 </ul>
 </div>
@@ -136,6 +121,9 @@
 <div class="sect1">
 <h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Note: Since my main feature is non-interactive, there are less things I could write for the user guide.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
@@ -146,10 +134,30 @@
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="feature-overview"><a class="link" href="#feature-overview">Feature overview</a></h3>
 <div class="paragraph">
-<p>Note: Since my main feature is non-interactive, most of my contributions to the User Guide involve refining existing sections by team members.
-== Contributions to the Developer Guide</p>
+<p>In the CAPTracker app, you can add modules that you&#8217;ve completed and it will display your current CAP.  A module consists of a code, year, semester, number of credits, and an associated grade.<br>
+You may also add incomplete modules (i.e. modules that you are currently enrolled in, or plan to enroll in eventually, but you have not received your grade yet) simply by adding that module and omitting the grade.+
+You may also set a CAP goal, and the app will automatically generate the target grades necessary for your incomplete modules so that you can achieve your goal. The app will also let you know if your goal is too high based on the number of incomplete credits you have and your current CAP.<br>
+Lastly, you can also adjust the target grade of a particular incomplete module (for example, a module you know you can get an A in) and the app will automatically recalculate the required grades for the rest of the modules (so you can afford to score lower on those modules).<br>
+Happy tracking!</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="saving-your-module-data"><a class="link" href="#saving-your-module-data">Saving your module data</a></h3>
+<div class="paragraph">
+<p>Your module information and CAP goal are automatically saved on the hard disk as a JSON file (by default <code>data/transcript.json</code>) whenever there are changes to the modules or CAP goal. The data is automatically loaded into the app again upon startup.+
+You may manually change the location to store your data by changing the value of <code>transcriptFilePath</code> in the file <code>data/preferences.json</code> (found in the same directory as the CapTracker jar file).<br>
+You may load your module data in the CAPTracker app on another computer or share it with other users if desired, simply by sharing the module data file generated by your instance of the app. The value of <code>transcriptFilePath</code> in the preferences file will have to be changed to the location of your own data file.
+Note: Do not modify the JSON module data file manually, or you may lose your data.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
@@ -160,5 +168,137 @@
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="transcript-storage-reading-and-writing"><a class="link" href="#transcript-storage-reading-and-writing">Transcript Storage: Reading and Writing</a></h3>
+<div class="paragraph">
+<p>Whenever the in-memory <code>Transcript</code> object is changed, the transcript data file is updated. When the app initializes, it will look for an existing data file from which to load the transcript.+
+If the file is not found, the app will initialize with an empty Transcript.+
+If the file is found but the data is an incorrect format or there is some problem reading from the file, the app will initialize with an empty Transcript as well.+</p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 03:35:17 UTC</div></div></div></body></html>
+<div class="paragraph">
+<p>When the app initializes, it looks for the file name provided by <code>data/preferences.json</code> under the <code>transcriptFilePath</code> key - by default this is <code>data/transcript_demo.json</code>. This file stores all transcript data including modules data and cap Goal information, such as its value, whether it is set, and whether it is impossible. The <code>transcriptFilePath</code> may be changed manually by the user.+</p>
+</div>
+<div class="paragraph">
+<p>By using the <code>Jackson</code> library to store the Transcript data as a JSON file instead of an XML file, we avoid having to write <code>XMLSerializableTranscript</code> and <code>XMLAdaptedModule</code> classes. Instead, we simply register a custom <code>JSONTranscriptDeserializer</code> on the <code>ReadOnlyTranscript</code> class so that when we read from the JSON file, Jackson&#8217;s <code>ObjectMapper</code> is able to use the values to reconstruct the saved object.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">Storage component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
+</div>
+<div class="title">Figure 1. Structure of the Storage Component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Storage</code> interface defines a component which</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>can save <code>UserPref</code> objects in JSON format and read it back.</p>
+</li>
+<li>
+<p>can save Transcript data in JSON format and read it back.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>StorageManager</code> implements the <code>Storage</code> interface, and updates the transcript JSON file when the <code>TranscriptChangedEvent</code> is fired (see Figure 4). It also logs the reading and saving of transcript data.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Instructions for Manual Testing</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">Launch and Shutdown</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Initial launch</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Download the jar file and copy into an empty folder</p>
+</li>
+<li>
+<p>Double-click the jar file<br>
+Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Saving window preferences</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Resize the window to an optimum size. Move the window to a different location. Close the window.</p>
+</li>
+<li>
+<p>Re-launch the app by double-clicking the jar file.<br>
+Expected: The most recent window size and location is retained.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Saving transcript data</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add some modules, set a CAP goal, and close the app.</p>
+</li>
+<li>
+<p>Re-launch the app by double-clicking the jar file.<br>
+Expected: The added modules and CAP goal are retained.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Changing the transcript data file path</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add some modules, set a CAP goal, and close the app.</p>
+</li>
+<li>
+<p>Change the value of <code>transcriptFilePath</code> in the file <code>data/preferences.json</code> (found in the same directory as the jar file) to some non-existent file such as <code>data/transcript_test.json</code>.</p>
+</li>
+<li>
+<p>Re-launch the app by double-clicking the jar file.+
+Expected: The app will initialize with an empty transcript (no modules or CAP goal). On further change, the app will save the transcript data to the new file <code>data/transcript_test..json</code>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Importing transcript data</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add some modules, set a CAP goal, and close the app.</p>
+</li>
+<li>
+<p>Save another copy of the jar file in another directory and open and close this second app.</p>
+</li>
+<li>
+<p>Replace the <code>data/transcript.json</code> of the second app with the <code>data/transcript.json</code> from the first app.</p>
+</li>
+<li>
+<p>Relaunch the new app.<br>
+Expected: The app will initialize with the added modules and CAP goal from the first app.+</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 03:46:17 UTC</div></div></div></body></html>
