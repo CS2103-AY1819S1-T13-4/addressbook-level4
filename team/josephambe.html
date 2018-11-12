@@ -329,19 +329,22 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
+<img src="../images/LogicClassDiagram.png" alt="LogicClassDiagram" width="600">
 </div>
 <div class="title">Figure 2. Class Diagram of the Logic Component</div>
 </div>
+<div class="paragraph">
+<p>image::[width="800"]</p>
+</div>
 <h4 id="events-driven-nature-of-the-design" class="discrete">Events-Driven nature of the design</h4>
 <div class="paragraph">
-<p>The <em>Sequence Diagram</em> below shows how the components interact for the scenario where the user issues the command <code>delete 1</code>.</p>
+<p>The <em>Sequence Diagram</em> below shows how the components interact for the scenario where the user issues the command <code>delete -t CS2103 -e 4 -z 2</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SDforDeletePerson.png" alt="SDforDeletePerson" width="800">
+<img src="../images/SDforDeleteModule.png" alt="SDforDeleteModule" width="800">
 </div>
-<div class="title">Figure 3. Component interactions for <code>delete 1</code> command (part 1)</div>
+<div class="title">Figure 3. Component interactions for <code>delete -t CS2103 -e 4 -z 2</code> command (part 1)</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -350,19 +353,19 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Note how the <code>Model</code> simply raises a <code>AddressBookChangedEvent</code> when the Address Book data are changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.
+Note how the <code>Model</code> simply raises a <code>TranscriptChangedEvent</code> when the Transcript data are changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The diagram below shows how the <code>EventsCenter</code> reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.</p>
+<p>The diagram below shows how the <code>EventsCenter</code> reacts to that event, which eventually results in the updates being saved to the hard disk and the panels of the UI being updated to reflect the latest modules in the system.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SDforDeletePersonEventHandling.png" alt="SDforDeletePersonEventHandling" width="800">
+<img src="../images/SDforDeleteModuleEventHandling.png" alt="SDforDeleteModuleEventHandling" width="800">
 </div>
-<div class="title">Figure 4. Component interactions for <code>delete 1</code> command (part 2)</div>
+<div class="title">Figure 4. Component interactions for <code>delete -t CS2103 -e 4 -z 2</code> command (part 2)</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -591,4 +594,4 @@ can enter my entries incrementally.</p>
 </ol>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 22:04:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 01:07:04 UTC</div></div></div></body></html>
